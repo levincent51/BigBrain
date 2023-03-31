@@ -131,7 +131,7 @@ A series of features below need to be implemented in your ReactJS app to operate
  * Allow admins to access a page whereby they can see a list of previous sessions for a quiz, and then view results for those previous sessions as well.
  
 #### 2.5.4. Points system
- * Devise a more advanced points system whereby a player's score if the product of the time taken to complete a question (i.e. speed) and the number of points a question is worth.You can 
+ * Devise a more advanced points system whereby a player's score is the product of the time taken to complete a question (i.e. speed) and the number of points a question is worth.
  * This points system should be explained (in writing) on the results screen for both admins and players.
 
 ### 2.6. Linting
