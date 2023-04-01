@@ -353,15 +353,11 @@ knowledge.
 
 This assignment is due *Wednesday the 19th of April, 10pm*.
 
-To submit your assignment, you must complete the following two steps in order: Ensure you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
-
-This will submit the latest commit on master as your submission.
-
-You do NOT have to run a submit command for this assignment.
+To submit your assignment, you must you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
+ 
+We will collect the latest work on your master branch of gitlab at the time of submission.
 
 It is your responsibiltiy to ensure that your code can run successfully when cloned fresh from Gitlab.
-
-For pairs, only one team member needs to submit.
 
 ### Dryrun
 
