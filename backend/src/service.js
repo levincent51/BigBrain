@@ -122,7 +122,7 @@ export const logout = (email) => userLock((resolve, reject) => {
 
 export const register = (email, password, name) => userLock((resolve, reject) => {
   if (email in admins) {
-    reject(new InputError('Email address already registered'));
+    return reject(new InputError('Email address already registered'));
   }
   admins[email] = {
     name,
@@ -148,9 +148,9 @@ const newQuizPayload = (name, owner) => ({
 
 export const assertOwnsQuiz = (email, quizId) => quizLock((resolve, reject) => {
   if (!(quizId in quizzes)) {
-    reject(new InputError('Invalid quiz ID'));
+    return reject(new InputError('Invalid quiz ID'));
   } else if (quizzes[quizId].owner !== email) {
-    reject(new InputError('Admin does not own this Quiz'));
+    return reject(new InputError('Admin does not own this Quiz'));
   } else {
     resolve();
   }
@@ -170,7 +170,7 @@ export const getQuizzesFromAdmin = email => quizLock((resolve, reject) => {
 
 export const addQuiz = (name, email) => quizLock((resolve, reject) => {
   if (name === undefined) {
-    reject(new InputError('Must provide a name for new quiz'));
+    return reject(new InputError('Must provide a name for new quiz'));
   } else {
     const newId = newQuizId();
     quizzes[newId] = newQuizPayload(name, email);
@@ -200,7 +200,7 @@ export const removeQuiz = quizId => quizLock((resolve, reject) => {
 
 export const startQuiz = quizId => quizLock((resolve, reject) => {
   if (quizHasActiveSession(quizId)) {
-    reject(new InputError('Quiz already has active session'));
+    return reject(new InputError('Quiz already has active session'));
   } else {
     const id = newSessionId();
     sessions[id] = newSessionPayload(quizId);
@@ -211,7 +211,7 @@ export const startQuiz = quizId => quizLock((resolve, reject) => {
 export const advanceQuiz = quizId => quizLock((resolve, reject) => {
   const session = getActiveSessionFromQuizIdThrow(quizId);
   if (!session.active) {
-    reject(new InputError('Cannot advance a quiz that is not active'));
+    return reject(new InputError('Cannot advance a quiz that is not active'));
   } else {
     const totalQuestions = session.questions.length;
     session.position += 1;
@@ -323,7 +323,7 @@ export const assertOwnsSession = async (email, sessionId) => {
 export const sessionResults = sessionId => sessionLock((resolve, reject) => {
   const session = sessions[sessionId];
   if (session.active) {
-    reject(new InputError('Cannot get results for active session'));
+    return reject(new InputError('Cannot get results for active session'));
   } else {
     resolve(Object.keys(session.players).map(pid => session.players[pid]));
   }
@@ -331,11 +331,11 @@ export const sessionResults = sessionId => sessionLock((resolve, reject) => {
 
 export const playerJoin = (name, sessionId) => sessionLock((resolve, reject) => {
   if (name === undefined) {
-    reject(new InputError('Name must be supplied'));
+    return reject(new InputError('Name must be supplied'));
   } else {
     const session = getActiveSessionFromSessionId(sessionId);
     if (session.position > 0) {
-      reject(new InputError('Session has already begun'));
+      return reject(new InputError('Session has already begun'));
     } else {
       const id = newPlayerId();
       session.players[id] = newPlayerPayload(name, session.questions.length);
@@ -356,7 +356,7 @@ export const hasStarted = playerId => sessionLock((resolve, reject) => {
 export const getQuestion = playerId => sessionLock((resolve, reject) => {
   const session = getActiveSessionFromSessionId(sessionIdFromPlayerId(playerId));
   if (session.position === -1) {
-    reject(new InputError('Session has not started yet'));
+    return reject(new InputError('Session has not started yet'));
   } else {
     resolve({
       ...quizQuestionPublicReturn(session.questions[session.position]),
@@ -368,9 +368,9 @@ export const getQuestion = playerId => sessionLock((resolve, reject) => {
 export const getAnswers = playerId => sessionLock((resolve, reject) => {
   const session = getActiveSessionFromSessionId(sessionIdFromPlayerId(playerId));
   if (session.position === -1) {
-    reject(new InputError('Session has not started yet'));
+    return reject(new InputError('Session has not started yet'));
   } else if (!session.answerAvailable) {
-    reject(new InputError('Question time has not been completed'));
+    return reject(new InputError('Question time has not been completed'));
   } else {
     resolve(quizQuestionGetCorrectAnswers(session.questions[session.position]));
   }
@@ -378,13 +378,13 @@ export const getAnswers = playerId => sessionLock((resolve, reject) => {
 
 export const submitAnswers = (playerId, answerList) => sessionLock((resolve, reject) => {
   if (answerList === undefined || answerList.length === 0) {
-    reject(new InputError('Answers must be provided'));
+    return reject(new InputError('Answers must be provided'));
   } else {
     const session = getActiveSessionFromSessionId(sessionIdFromPlayerId(playerId));
     if (session.position === -1) {
-      reject(new InputError('Session has not started yet'));
+      return reject(new InputError('Session has not started yet'));
     } else if (session.answerAvailable) {
-      reject(new InputError('Can\'t answer question once answer is available'));
+      return reject(new InputError('Can\'t answer question once answer is available'));
     } else {
       session.players[playerId].answers[session.position] = {
         questionStartedAt: session.isoTimeLastQuestionStarted,
@@ -400,9 +400,9 @@ export const submitAnswers = (playerId, answerList) => sessionLock((resolve, rej
 export const getResults = playerId => sessionLock((resolve, reject) => {
   const session = sessions[sessionIdFromPlayerId(playerId)];
   if (session.active) {
-    reject(new InputError('Session is ongoing, cannot get results yet'));
+    return reject(new InputError('Session is ongoing, cannot get results yet'));
   } else if (session.position === -1) {
-    reject(new InputError('Session has not started yet'));
+    return reject(new InputError('Session has not started yet'));
   } else {
     resolve(session.players[playerId].answers);
   }

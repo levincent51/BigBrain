@@ -12,8 +12,8 @@
 
 ## 0. Change Log
 
-N/A
-
+* 02/04/2023: General edit clause added to 2.2.2
+* 02/04/2023: Comments about advancing added to 2.3.1
 ## 1. Background & Motivation
 
 In March 2022 you and your friends pitched a startup idea to produce *An innovative lightweight quiz platform for millenials* that will *revolutionise the secondary and tertiary education market for years*. You pitched this solution in the form of a web-based application, and called this quiz application **BigBrain**.
@@ -66,6 +66,7 @@ A series of features below need to be implemented in your ReactJS app to operate
  * A unique route must exist for this screen that is parameterised on the game ID
  * This screen allows users to select the question they want to edit
  * This screen allows users to delete a particular question, or add a new question
+ * This screen should also allow the editing of game meta data such as name and thumbnail
 
 #### 2.2.3. Edit BigBrain Game Question
  * A unique route must exist for this screen that is parameterised both on the Game ID and the question ID
@@ -92,7 +93,8 @@ A series of features below need to be implemented in your ReactJS app to operate
 
 #### 2.3.3. Getting the results of a game
  * A unique route must exist for this screen that is parameterised on the session ID
- * Once the screen loads, it should display the following:
+ * Once the screen loads, and the game hasn't finished, it should allow the admin to advance to the next question or stop the game.
+ * Once the screen loads, and the game has finished, it should display the following:
    * Table of up to top 5 users and their score
    * Bar/Line chart showing a breakdown of what percentage of people (Y axis) got certain questions (X axis) correct
    * Some chart showing the average response/answer time for each question
@@ -353,15 +355,11 @@ knowledge.
 
 This assignment is due *Wednesday the 19th of April, 10pm*.
 
-To submit your assignment, you must complete the following two steps in order: Ensure you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
-
-This will submit the latest commit on master as your submission.
-
-You do NOT have to run a submit command for this assignment.
+To submit your assignment, you must you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
+ 
+We will collect the latest work on your master branch of gitlab at the time of submission.
 
 It is your responsibiltiy to ensure that your code can run successfully when cloned fresh from Gitlab.
-
-For pairs, only one team member needs to submit.
 
 ### Dryrun
 
