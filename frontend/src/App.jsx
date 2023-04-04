@@ -20,10 +20,10 @@ function App () {
         <Routes>
           <Route path='/' element={token ? <Dashboard/> : <Welcome/>}/>
           <Route path="/login" element={
-            <LoginPage setToken={setToken}/>
+            <LoginPage/>
           } />
           <Route path="/register" element={
-            <LoginPage setToken={setToken}/>
+            <LoginPage/>
           } />
           <Route path="/*" element={
             <>
