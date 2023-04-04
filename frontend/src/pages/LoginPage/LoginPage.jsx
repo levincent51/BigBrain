@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from '../../components/Login/Login';
+import Register from '../../components/Login/Register';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
