@@ -5,14 +5,25 @@ import fetchAPI from '../utilities/fetch';
 const Dashboard = (props) => {
   const { token, setToken } = props;
   const [quizList, setQuizList] = useState([]);
-  useEffect(() => {
-    fetchAPI('GET', props.token, 'admin/quiz')
-      .then((res) => {
-        if (res.error) alert(res.error);
-        console.log(res);
-        setQuizList(res.quizzes);
-      })
+
+  const fetchAllQuizzes = async () => {
+    const res = await fetchAPI('GET', props.token, 'admin/quiz')
+    if (res.error) alert(res.error);
+    else {
+      console.log(res);
+      setQuizList(res.quizzes);
+    }
+  }
+
+  useEffect(async () => {
+    await fetchAllQuizzes();
   }, []);
+
+  // const createNewGame = async () => {
+  //   await fetchAPI('POST', props.token, 'admin/quiz/new', {});
+  //   await fetchAllQuizzes();
+  // }
+
   return (
     <div>
       <Navbar isLoggedin={true} token={token} setToken={setToken}></Navbar>

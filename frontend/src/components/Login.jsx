@@ -28,14 +28,13 @@ const Login = (props) => {
     setFormErrors(loginValidator(formValues));
 
     if (!Object.keys(loginValidator(formValues)).length) {
-      fetchAPI('POST', null, 'admin/auth/login', formValues).then((res) => {
-        if (res.error) setFormErrors({ input: res.error });
-        else {
-          setToken(res.token);
-          localStorage.setItem('token', res.token);
-          navigate('/');
-        }
-      });
+      const res = await fetchAPI('POST', null, 'admin/auth/login', formValues)
+      if (res.error) setFormErrors({ input: res.error });
+      else {
+        setToken(res.token);
+        localStorage.setItem('token', res.token);
+        navigate('/');
+      }
     }
   };
 

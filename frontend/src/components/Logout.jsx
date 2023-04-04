@@ -8,13 +8,11 @@ const Logout = (props) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    fetchAPI('POST', token, 'admin/auth/logout')
-      .then(res => {
-        console.log(res);
-        localStorage.removeItem('token');
-        setToken(null);
-        navigate('/');
-      });
+    const res = await fetchAPI('POST', token, 'admin/auth/logout')
+    console.log(res);
+    localStorage.removeItem('token');
+    setToken(null);
+    navigate('/');
   }
 
   return (

@@ -27,15 +27,13 @@ const Register = (props) => {
 
     if (!Object.keys(registerValidator(formValues)).length) {
       const { confirm, ...filtered } = formValues;
-      fetchAPI('POST', null, 'admin/auth/register', filtered)
-        .then(res => {
-          if (res.error) setFormErrors({ input: res.error });
-          else {
-            setToken(res.token);
-            localStorage.setItem('token', res.token);
-            navigate('/');
-          }
-        });
+      const res = await fetchAPI('POST', null, 'admin/auth/register', filtered)
+      if (res.error) setFormErrors({ input: res.error });
+      else {
+        setToken(res.token);
+        localStorage.setItem('token', res.token);
+        navigate('/');
+      }
     }
   }
 

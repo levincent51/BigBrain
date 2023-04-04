@@ -1,7 +1,7 @@
 
 const port = 5005;
 
-const fetchAPI = (method, token, path, body = null) => {
+const fetchAPI = async (method, token, path, body = null) => {
   const headers = { 'Content-Type': 'application/json' };
 
   if (token) {
@@ -9,28 +9,20 @@ const fetchAPI = (method, token, path, body = null) => {
   }
 
   if (body) {
-    return fetch(`http://localhost:${port}/${path}`, {
+    const response = await fetch(`http://localhost:${port}/${path}`, {
       method,
       headers,
       body: JSON.stringify(body),
     })
-      .then((response) => {
-        if (response.error) {
-          throw new Error('Login failed');
-        }
-        return response.json();
-      })
+    const data = await response.json()
+    return data;
   } else {
-    return fetch(`http://localhost:${port}/${path}`, {
+    const response = await fetch(`http://localhost:${port}/${path}`, {
       method,
       headers,
     })
-      .then((response) => {
-        if (response.error) {
-          throw new Error('Login failed');
-        }
-        return response.json();
-      })
+    const data = await response.json()
+    return data;
   }
 };
 
