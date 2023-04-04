@@ -2,9 +2,12 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Navbar from '../components/Navbar';
+import Button from '@mui/material/Button';
+import Navbar from '../../components/Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 function Welcome () {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar isLoggedIn={false}></Navbar>
@@ -22,6 +25,9 @@ function Welcome () {
           }}
         >
           <Typography variant='h3'>Welcome to Big Brain</Typography>
+          <Button onClick={() => navigate('/login')}>
+              Click here to Login
+          </Button>
         </Box>
       </Container>
     </>

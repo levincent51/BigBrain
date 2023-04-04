@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import fetchAPI from '../utilities/fetch';
-import { loginValidator } from '../utilities/loginValidators';
+import fetchAPI from '../../utilities/fetch';
+import { loginValidator } from '../../utilities/loginValidators';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useContext, Context } from '../../context';
 
 const Login = (props) => {
-  const { setToken } = props;
+  const { setters } = useContext(Context);
   const navigate = useNavigate();
 
   const initialValues = { email: '', password: '' };
@@ -28,14 +29,13 @@ const Login = (props) => {
     setFormErrors(loginValidator(formValues));
 
     if (!Object.keys(loginValidator(formValues)).length) {
-      fetchAPI('POST', null, 'admin/auth/login', formValues).then((res) => {
-        if (res.error) setFormErrors({ input: res.error });
-        else {
-          setToken(res.token);
-          localStorage.setItem('token', res.token);
-          navigate('/');
-        }
-      });
+      const res = await fetchAPI('POST', null, 'admin/auth/login', formValues)
+      if (res.error) setFormErrors({ input: res.error });
+      else {
+        setters.setToken(res.token);
+        localStorage.setItem('token', res.token);
+        navigate('/');
+      }
     }
   };
 

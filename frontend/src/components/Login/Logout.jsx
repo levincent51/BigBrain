@@ -1,20 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import fetchAPI from '../utilities/fetch';
+import fetchAPI from '../../utilities/fetch';
 import Button from '@mui/material/Button';
 
+import { useContext, Context } from '../../context';
+
 const Logout = (props) => {
-  const { token, setToken } = props;
+  const { getters, setters } = useContext(Context);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    fetchAPI('POST', token, 'admin/auth/logout')
-      .then(res => {
-        console.log(res);
-        localStorage.removeItem('token');
-        setToken(null);
-        navigate('/');
-      });
+    const res = await fetchAPI('POST', getters.token, 'admin/auth/logout')
+    console.log(res);
+    localStorage.removeItem('token');
+    setters.setToken(null);
+    navigate('/');
   }
 
   return (

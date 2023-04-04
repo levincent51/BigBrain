@@ -5,11 +5,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Logout from './Logout';
+import Logout from '../Login/Logout';
 import { Link } from '@mui/material';
 
 const Navbar = (props) => {
-  const { isLoggedin, token, setToken } = props;
+  const { isLoggedin } = props;
   const navigate = useNavigate();
   function handleLoginClick () {
     navigate('/login');
@@ -25,9 +25,9 @@ const Navbar = (props) => {
             </Link>
           </Typography>
           {isLoggedin
-            ? <Logout token={token} setToken={setToken}/>
+            ? <Logout/>
             : <Button color="inherit" onClick={handleLoginClick}>
-              Login
+              Login/Register
             </Button>}
         </Toolbar>
       </AppBar>
