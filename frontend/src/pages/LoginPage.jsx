@@ -25,7 +25,7 @@ const Copyright = (props) => {
   );
 }
 
-const LoginPage = ({ setToken }) => {
+const LoginPage = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const LoginPage = ({ setToken }) => {
           <Typography component="h1" variant="h4">
             {isLoginPage ? 'Sign In' : 'Register'}
           </Typography>
-          {isLoginPage ? <Login setToken={setToken} /> : <Register setToken={setToken} />}
+          {isLoginPage ? <Login/> : <Register/>}
           <Grid container>
               <Grid item xs>
                 <Link component="button" onClick={() => navigate('/')} variant="body2">

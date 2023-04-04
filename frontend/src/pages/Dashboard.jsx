@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useContext, Context } from '../context';
 import Navbar from '../components/Navbar';
 import fetchAPI from '../utilities/fetch';
 
 const Dashboard = (props) => {
-  const { token, setToken } = props;
+  const { getters, setters } = useContext(Context);
   const [quizList, setQuizList] = useState([]);
 
   const fetchAllQuizzes = async () => {
-    const res = await fetchAPI('GET', props.token, 'admin/quiz')
+    const res = await fetchAPI('GET', getters.token, 'admin/quiz')
     if (res.error) alert(res.error);
     else {
       console.log(res);
@@ -26,7 +28,7 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <Navbar isLoggedin={true} token={token} setToken={setToken}></Navbar>
+      <Navbar isLoggedin={true}></Navbar>
       <div>
       <h1>Dashboard</h1>
       <ul>

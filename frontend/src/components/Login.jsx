@@ -8,9 +8,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useContext, Context } from '../context';
 
 const Login = (props) => {
-  const { setToken } = props;
+  const { setters } = useContext(Context);
   const navigate = useNavigate();
 
   const initialValues = { email: '', password: '' };
@@ -31,7 +32,7 @@ const Login = (props) => {
       const res = await fetchAPI('POST', null, 'admin/auth/login', formValues)
       if (res.error) setFormErrors({ input: res.error });
       else {
-        setToken(res.token);
+        setters.setToken(res.token);
         localStorage.setItem('token', res.token);
         navigate('/');
       }
