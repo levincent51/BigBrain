@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders learn react link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/o/i); // random letter
+  const linkElement = screen.getByText('Welcome to Big Brain'); // random letter
   expect(linkElement).toBeInTheDocument();
 });
