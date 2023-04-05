@@ -25,7 +25,6 @@ const Register = (props) => {
     e.preventDefault();
 
     setFormErrors(registerValidator(formValues));
-
     if (!Object.keys(registerValidator(formValues)).length) {
       const { confirm, ...filtered } = formValues;
       const res = await fetchAPI('POST', null, 'admin/auth/register', filtered)
@@ -39,7 +38,7 @@ const Register = (props) => {
   }
 
   return (
-    <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
+    <Box component="form" name='register-form' onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
       <TextField
         fullWidth
         margin="normal"
@@ -69,6 +68,7 @@ const Register = (props) => {
         fullWidth
         margin="normal"
         type="password"
+        data-testid="password-register"
         name="password"
         label="Password"
         value={formValues.password}
@@ -81,16 +81,18 @@ const Register = (props) => {
         margin="normal"
         type="password"
         name="confirm"
+        id="confirm-register"
         label="Confirm Password"
         value={formValues.confirm}
         onChange={handleChange}
-        error={formErrors.confirm}
+        error={'confirm' in formErrors}
         helperText={formErrors.confirm}
       />
       <Typography variant="body2" sx={{ color: 'error.main' }}>{formErrors.input}</Typography>
       <Button
         type="submit"
         fullWidth
+        name='register-button'
         variant="contained"
         sx={{ mt: 2 }}
       >
