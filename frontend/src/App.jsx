@@ -4,6 +4,7 @@ import { Context, initialValues } from './context';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Welcome from './pages/LoginPage/Welcome';
 import LoginPage from './pages/LoginPage/LoginPage';
+import EditGame from './pages/EditGame/EditGame';
 
 function App () {
   const [token, setToken] = useState(initialValues.token);
@@ -24,6 +25,9 @@ function App () {
           } />
           <Route path="/register" element={
             <LoginPage/>
+          } />
+          <Route path="/editgame/:gameid" element={
+            <EditGame/>
           } />
           <Route path="/*" element={
             <>
