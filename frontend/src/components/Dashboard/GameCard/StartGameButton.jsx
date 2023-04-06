@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useContext, Context } from '../../../context';
+import { useContext, Context } from '../../../context';
 import Button from '@mui/material/Button';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import Popover from '@mui/material/Popover';
@@ -10,34 +10,34 @@ import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-// import fetchAPI from '../../../utilities/fetch';
+import fetchAPI from '../../../utilities/fetch';
 
-const StartGameButton = ({ quizId }) => {
-  // const { getters } = useContext(Context);
-  // const [hasStarted, setHasStarted] = useState(false);
+const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes }) => {
+  const { getters } = useContext(Context);
 
   const copyToClip = () => navigator.clipboard.writeText(quizId);
 
-  // const startGame = async () => {
-  //   if (!hasStarted) {
-  //     console.log('started');
-  //     setHasStarted(true);
-  //     const res = await fetchAPI('POST', getters.token, `admin/quiz/${quizId}/start`)
-  //     if (res.error) console.log('error');
-  //   }
-  // }
+  const startGame = async () => {
+    if (!isActive) {
+      console.log('started');
+      setIsActive(true);
+      const res = await fetchAPI('POST', getters.token, `admin/quiz/${quizId}/start`)
+      if (res.error) console.log(res.error);
+      await fetchAllQuizzes();
+    }
+  }
 
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
-        <div style={{ backgroundColor: 'red' }}>
+        <div onClick={startGame}>
             <Button
               variant="contained"
               endIcon={<PlayCircleOutlineIcon/>}
               {...bindTrigger(popupState)}
               sx={{ backgroundColor: 'tomato', width: '90%', height: '24px', position: 'absolute', bottom: '5%', left: '5%', fontSize: '11px' }}
             >
-            Start Quiz
+            {!isActive ? 'Start Quiz' : 'Get Quiz Code'}
             </Button>
             <Popover
             {...bindPopover(popupState)}

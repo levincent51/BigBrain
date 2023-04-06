@@ -22,6 +22,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   const [numQuestions, setNumQuestions] = useState(0);
   const [quizLength, setQuizLength] = useState(0);
   const [hoveringEdit, setHoveringEdit] = useState(false);
+  const [isActive, setIsActive] = useState(null)
 
   const fetchQuizData = async () => {
     const res = await fetchAPI('GET', getters.token, `admin/quiz/${quiz.id}`)
@@ -34,6 +35,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
         total += q.timeLimit;
       })
       setQuizLength(total);
+      setIsActive(res.active);
     }
   }
 
@@ -52,8 +54,6 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   useEffect(async () => {
     await fetchQuizData();
   }, []);
-
-  console.log(quiz.id);
 
   return (
     <Card sx={{ width: 200, height: 210, position: 'relative' }}>
@@ -98,7 +98,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
         <CardActions
           sx={{ justifyContent: 'center' }}
         >
-        <StartGameButton quizId={quiz.id}/>
+        <StartGameButton quizId={quiz.id} isActive={isActive} setIsActive={setIsActive} fetchAllQuizzes={fetchAllQuizzes}/>
       </CardActions>
     </Card>
   );
