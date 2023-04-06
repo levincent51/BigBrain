@@ -1,0 +1,10 @@
+/* .background {
+    background-color:red;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+} */
+
+.relative {
+    position: relative;
+}

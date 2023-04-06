@@ -14,12 +14,14 @@ import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import './style.css';
 
 const Games = ({ quiz, fetchAllQuizzes }) => {
+  const { getters } = useContext(Context);
+
   const [numQuestions, setNumQuestions] = useState(0);
   const [quizLength, setQuizLength] = useState(0);
-
-  const { getters } = useContext(Context);
+  const [hoveringEdit, setHoveringEdit] = useState(false);
 
   const fetchQuizData = async () => {
     const res = await fetchAPI('GET', getters.token, `admin/quiz/${quiz.id}`)
@@ -36,7 +38,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   }
 
   const editGame = async () => {
-
+    console.log('editgame')
   }
 
   const deleteQuiz = async () => {
@@ -52,12 +54,14 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   }, []);
 
   return (
-    <Card sx={{ width: 200 }}>
+    <Card sx={{ width: 200, height: 220, position: 'relative' }}>
         <CardMedia
           component="img"
           height="120"
           image={quiz.thumbnail ? quiz.thumbnail : brainLogo}
           alt="Quiz thumbnail"
+          onMouseEnter={() => setHoveringEdit(true)}
+          onMouseLeave={() => setHoveringEdit(false)}
         />
         <CardContent>
         <Typography gutterBottom variant="h6" component="div">
@@ -69,12 +73,23 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
         </Stack>
         </CardContent>
         <CardActions>
-        <IconButton aria-label="delete" size="small" color="error" onClick={deleteQuiz}>
+        <IconButton 
+          sx={{ position: 'absolute', right: '2%', top: '2%' }}
+          aria-label="delete" 
+          size="small"
+          onClick={deleteQuiz}>
           <DeleteIcon size="inherit"/>
         </IconButton>
-        <IconButton aria-label="edit game" size="small" color="success" onClick={editGame}>
+        {hoveringEdit && <IconButton
+          aria-label="edit game"
+          size="small"
+          onClick={editGame}
+          sx={{ position: 'absolute', right: '42%', top: '15%' }}
+          onMouseEnter={() => setHoveringEdit(true)}
+        >
           <EditIcon size="inherit"/>
         </IconButton>
+        }
       </CardActions>
     </Card>
   );
