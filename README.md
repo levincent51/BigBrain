@@ -323,6 +323,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
         <li>Any extra features written down in `BONUS.md` in the project folder</li>
         <li>Any bonus marks that extend your ass3 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 80% of the course that is allocated for assignment marks</li>
         <li><b>Expectations placed on solo groups will be half of that of pairs to achieve the same mark.</b></li>
+        <li>If you are working individually and complete Advanced Features (section 2.5) in it's entirety (and high quality) you can receive full marks for bonus marks.</li>
       </ul>
     </td>
   </tr>
