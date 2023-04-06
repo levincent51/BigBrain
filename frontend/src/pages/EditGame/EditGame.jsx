@@ -140,8 +140,9 @@ function EditGame (props) {
                   </IconButton>
                 </Grid>
               ))}
+              <AddQuestionButton quizInfo={quizInfo} setQuizInfo={setQuizInfo}></AddQuestionButton>
+
             </Grid>
-            <AddQuestionButton quizInfo={quizInfo} setQuizInfo={setQuizInfo}></AddQuestionButton>
               <Box mt={2} display="flex" justifyContent="center">
               <Button fullWidth variant="contained" color="primary" type="submit" onClick={handleSubmit}>
                 Save Changes
