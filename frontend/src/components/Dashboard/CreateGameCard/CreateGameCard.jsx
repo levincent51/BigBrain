@@ -24,7 +24,7 @@ const CreateGameCard = ({ fetchAllQuizzes }) => {
   }
 
   return (
-    <Card sx={{ width: 200, height: 220 }}>
+    <Card sx={{ width: 200, height: 210 }}>
       <CardMedia
       component="img"
       height="120"
@@ -34,7 +34,7 @@ const CreateGameCard = ({ fetchAllQuizzes }) => {
       <CardActions>
         <Paper
           component="form"
-          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, marginTop: '20px' }}
+          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400, marginTop: '19px' }}
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}

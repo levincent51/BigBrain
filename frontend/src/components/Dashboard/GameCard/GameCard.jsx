@@ -15,6 +15,7 @@ import Chip from '@mui/material/Chip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
+import StartGameButton from './StartGameButton';
 
 const Games = ({ quiz, fetchAllQuizzes }) => {
   const navigate = useNavigate();
@@ -55,8 +56,10 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
     await fetchQuizData();
   }, []);
 
+  console.log(quiz.id);
+
   return (
-    <Card sx={{ width: 200, height: 220, position: 'relative' }}>
+    <Card sx={{ width: 200, height: 210, position: 'relative' }}>
         <CardMedia
           component="img"
           height="120"
@@ -65,33 +68,40 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
           onMouseEnter={() => setHoveringEdit(true)}
           onMouseLeave={() => setHoveringEdit(false)}
         />
-        <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {quiz.name}
-        </Typography>
-        <Stack direction="row" spacing={1}>
-          <Chip icon={<QuestionMarkIcon />} label={numQuestions} size="small" />
-          <Chip icon={<AccessTimeFilledIcon />} label={quizLength + ' s'} size="small"/>
-        </Stack>
-        </CardContent>
-        <CardActions>
         <IconButton
-          sx={{ position: 'absolute', right: '2%', top: '2%' }}
+          sx={{ position: 'absolute', right: '2%', top: '2%', backgroundColor: 'white', height: '20px', width: '20px' }}
           aria-label="delete"
           size="small"
           onClick={deleteQuiz}>
-          <DeleteIcon size="inherit"/>
+          <DeleteIcon sx={{ height: '15px' }}/>
         </IconButton>
         {hoveringEdit && <IconButton
           aria-label="edit game"
           size="small"
           onClick={editGame}
-          sx={{ position: 'absolute', right: '42%', top: '15%' }}
+          sx={{ position: 'absolute', right: '40%', top: '20%', backgroundColor: 'white' }}
           onMouseEnter={() => setHoveringEdit(true)}
         >
           <EditIcon size="inherit"/>
         </IconButton>
         }
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ position: 'absolute', bottom: '46%', right: '2%' }}
+        >
+          <Chip icon={<QuestionMarkIcon sx={{ height: '85%' }} />} label={numQuestions} size="small" sx={{ backgroundColor: 'white', height: '18px' }} variant="outlined"/>
+          <Chip icon={<AccessTimeFilledIcon sx={{ height: '85%' }} />} label={quizLength + ' s'} size="small" sx={{ backgroundColor: 'white', height: '18px' }} variant="outlined"/>
+        </Stack>
+        <CardContent>
+        <Typography gutterBottom variant="small" component="div">
+          {quiz.name}
+        </Typography>
+        </CardContent>
+        <CardActions
+          sx={{ justifyContent: 'center' }}
+        >
+        <StartGameButton quizId={quiz.id}/>
       </CardActions>
     </Card>
   );

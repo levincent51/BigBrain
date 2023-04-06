@@ -6,6 +6,7 @@ import Welcome from './pages/LoginPage/Welcome';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Navbar from './components/Navbar/Navbar';
 import EditGame from './pages/EditGame/EditGame';
+import GamePage from './pages/Game/gamePage';
 
 function App () {
   const [token, setToken] = useState(initialValues.token);
@@ -31,12 +32,21 @@ function App () {
                 <button onClick={() => window.location.replace('/')}>Go back</button>
               </>
             } />
+            <Route path="/*" element={
+            <>
+              <div>NO MATCHING ROUTE</div>
+              <button onClick={() => window.location.replace('/')}>Go back</button>
+            </>
+          } />
           </Route>
           <Route path="/login" element={
             <LoginPage/>
           } />
           <Route path="/register" element={
             <LoginPage/>
+          } />
+          <Route path="/game/:gameId" element={
+            <GamePage/>
           } />
         </Routes>
       </BrowserRouter>

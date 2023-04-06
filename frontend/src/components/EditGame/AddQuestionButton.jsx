@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
 
 function AddQuestionButton ({ quizInfo, setQuizInfo }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -34,7 +34,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
           Add Question
         </Button>
       </Grid>
-      <Dialog maxWidth='lg' PaperProps={{ style: { minWidth: '60vh' } }} open={modalOpen} onClose={() => setModalOpen(false)}>
+      <Dialog maxWidth='lg' PaperProps={{ style: { minWidth: '60vh', maxWidth: '90vh' } }} open={modalOpen} onClose={() => setModalOpen(false)}>
         <DialogTitle>Add New Question</DialogTitle>
         <DialogContent>
           <TextField

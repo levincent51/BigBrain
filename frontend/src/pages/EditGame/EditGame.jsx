@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import fetchAPI from '../../utilities/fetch';
 import { Context, useContext } from '../../context';
-import AddQuestionButton from '../../components/EditGame/AddQuestionButton';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -15,6 +14,7 @@ import Delete from '@mui/icons-material/Delete';
 import ImageIcon from '@mui/icons-material/Image';
 import Edit from '@mui/icons-material/Edit';
 import brainlogo from '../../components/Dashboard/GameCard/brainlogo.jpg'
+import AddQuestionButton from '../../components/EditGame/AddQuestionButton';
 
 function EditGame (props) {
   // eslint-disable-next-line no-unused-vars
@@ -141,8 +141,8 @@ function EditGame (props) {
                 </Grid>
               ))}
             </Grid>
-            <AddQuestionButton quizInfo={quizInfo} setQuizInfo={setQuizInfo}/>
-            <Box mt={2} display="flex" justifyContent="center">
+            <AddQuestionButton quizInfo={quizInfo} setQuizInfo={setQuizInfo}></AddQuestionButton>
+              <Box mt={2} display="flex" justifyContent="center">
               <Button fullWidth variant="contained" color="primary" type="submit" onClick={handleSubmit}>
                 Save Changes
               </Button>
