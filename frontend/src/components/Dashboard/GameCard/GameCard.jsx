@@ -16,7 +16,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 const Games = ({ quiz, fetchAllQuizzes }) => {
-  const [quizInfo, setQuizInfo] = useState();
   const [numQuestions, setNumQuestions] = useState(0);
   const [quizLength, setQuizLength] = useState(0);
 
@@ -26,12 +25,18 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
     const res = await fetchAPI('GET', getters.token, `admin/quiz/${quiz.id}`)
     if (res.error) alert(res.error);
     else {
-      setQuizInfo(res)
-      setNumQuestions(quizInfo.questions.length)
+      console.log(res);
+      setNumQuestions(res.questions.length)
+      let total = 0;
       res.questions.forEach(q => {
-        setQuizLength(quizLength + q.timeLimit)
+        total += q.timeLimit;
       })
+      setQuizLength(total);
     }
+  }
+
+  const editGame = async () => {
+
   }
 
   const deleteQuiz = async () => {
@@ -60,14 +65,14 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
         </Typography>
         <Stack direction="row" spacing={1}>
           <Chip icon={<QuestionMarkIcon />} label={numQuestions} size="small" />
-          <Chip icon={<AccessTimeFilledIcon />} label={quizLength} size="small"/>
+          <Chip icon={<AccessTimeFilledIcon />} label={quizLength + ' s'} size="small"/>
         </Stack>
         </CardContent>
         <CardActions>
         <IconButton aria-label="delete" size="small" color="error" onClick={deleteQuiz}>
           <DeleteIcon size="inherit"/>
         </IconButton>
-        <IconButton aria-label="delete" size="small" color="success">
+        <IconButton aria-label="edit game" size="small" color="success" onClick={editGame}>
           <EditIcon size="inherit"/>
         </IconButton>
       </CardActions>
