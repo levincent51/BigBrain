@@ -7,7 +7,7 @@ import GamesCard from '../../components/Dashboard/GameCard/GameCard';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import CreateGameCard from '../../components/Dashboard/CreateGameCard/CreateGameCard'
 
-const Dashboard = (props) => {
+const gamePage = (props) => {
   const { getters, setters } = useContext(Context);
   const [quizList, setQuizList] = useState([]);
 
@@ -44,4 +44,4 @@ const Dashboard = (props) => {
   );
 };
 
-export default Dashboard;
+export default gamePage;
