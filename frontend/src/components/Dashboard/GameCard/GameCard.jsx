@@ -14,8 +14,11 @@ import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from 'react-router-dom';
 
 const Games = ({ quiz, fetchAllQuizzes }) => {
+  const navigate = useNavigate();
+
   const [numQuestions, setNumQuestions] = useState(0);
   const [quizLength, setQuizLength] = useState(0);
 
@@ -29,14 +32,15 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
       setNumQuestions(res.questions.length)
       let total = 0;
       res.questions.forEach(q => {
-        total += q.timeLimit;
+        if (q.timeLimit) total += q.timeLimit;
       })
       setQuizLength(total);
     }
   }
 
   const editGame = async () => {
-
+    console.log(quiz.id)
+    navigate(`/editgame/${quiz.id}`);
   }
 
   const deleteQuiz = async () => {
