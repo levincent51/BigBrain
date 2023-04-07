@@ -113,4 +113,41 @@ describe('Register', () => {
     expect(await screen.findByText(/This is not a valid email format!/i)).toBeInTheDocument();
     expect(await screen.findByText(/Passwords must match!/i)).toBeInTheDocument();
   });
+
+  it('fill in with only keyboard', async () => {
+    fetchAPI.mockResolvedValue({ token: 'mockToken' });
+    const navigate = jest.fn();
+    useNavigate.mockReturnValue(navigate);
+    const setToken = jest.fn();
+    const setters = { setToken };
+    render(
+      <Context.Provider value={{ setters }}>
+        <BrowserRouter>
+          <Register/>
+        </BrowserRouter>
+      </Context.Provider>
+    );
+
+    // only useing keyboard, should be able to fill in form.
+    userEvent.keyboard('Test');
+    userEvent.tab();
+    userEvent.keyboard('Test2@mail.com');
+    userEvent.tab();
+    userEvent.keyboard('123');
+    userEvent.tab();
+    userEvent.keyboard('123');
+    userEvent.tab();
+
+    // when submitting, no front-end validation
+    userEvent.keyboard('{enter}');
+
+    expect(fetchAPI).toHaveBeenCalledTimes(1);
+
+    // expect successfull call of API
+    expect(fetchAPI).toHaveBeenCalledWith('POST', null, 'admin/auth/register', {
+      name: 'Test',
+      email: 'Test2@mail.com',
+      password: '123'
+    });
+  });
 });
