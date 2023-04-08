@@ -129,6 +129,7 @@ function EditGame (props) {
             />
             <label htmlFor="file-upload">
               <Button
+                aria-label='upload thumbnail'
                 component="span"
                 size="medium"
                 endIcon={<ImageIcon />}
@@ -150,19 +151,19 @@ function EditGame (props) {
                     InputProps={{ readOnly: true }}
                     fullWidth
                   />
-                  <IconButton disabled={quizInfo.questions?.length <= 1} onClick={() => handleDeleteQuestion(index)}>
+                  <IconButton disabled={quizInfo.questions?.length <= 1} onClick={() => handleDeleteQuestion(index)} aria-label='delete question'>
                     <Delete />
                   </IconButton>
-                  <IconButton disabled={disabledEdit(q.id)} onClick={() => navigateToQuestion(q.id)}>
+                  <IconButton disabled={disabledEdit(q.id)} onClick={() => navigateToQuestion(q.id)} aria-label='edit question'>
                     <Edit />
                   </IconButton>
                 </Grid>
               ))}
-              <AddQuestionButton quizInfo={quizInfo} setQuizInfo={setQuizInfo}></AddQuestionButton>
+              <AddQuestionButton aria-label='Add question' quizInfo={quizInfo} setQuizInfo={setQuizInfo}></AddQuestionButton>
 
             </Grid>
               <Box mt={2} display="flex" justifyContent="center">
-              <Button fullWidth variant="contained" color="primary" type="submit" onClick={handleSubmit}>
+              <Button fullWidth aria-label='save game changes' variant="contained" color="primary" type="submit" onClick={handleSubmit}>
                 Save Changes
               </Button>
             </Box>
