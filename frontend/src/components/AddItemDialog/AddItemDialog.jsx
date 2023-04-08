@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
 
-function AddItemDialog ({ handleSave, itemName }) {
+function AddItemDialog ({ limit, current, handleSave, itemName }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [newItem, setNewItem] = useState('');
 
@@ -24,9 +24,10 @@ function AddItemDialog ({ handleSave, itemName }) {
     <>
       <Grid item xs={12}>
         <Button
-            aria-label={`Add new ${itemName} button`}
+          aria-label={`Add new ${itemName} button`}
           variant="outlined"
           color="primary"
+          disabled={current >= limit}
           startIcon={<AddCircleIcon />}
           onClick={handleAddItem}
         >

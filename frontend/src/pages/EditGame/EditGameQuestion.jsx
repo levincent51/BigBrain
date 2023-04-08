@@ -253,14 +253,14 @@ function EditGameQuestion () {
                           onChange={() => handleRadio(op.name, index)}
                         />}
 
-                    <IconButton onClick={() => handleDeleteOptions(index)}>
+                    <IconButton disabled={questionInfo.options?.length <= 2} onClick={() => handleDeleteOptions(index)}>
                       <Delete />
                     </IconButton>
                   </Grid>
                 ))}
               </Grid>
               <Box display='flex' justifyContent='space-between' paddingY={2}>
-                <AddItemDialog itemName='Option' handleSave={handleOptionSave}/>
+                <AddItemDialog limit={6} current={questionInfo.options.length} itemName='Option' handleSave={handleOptionSave}/>
               </Box>
               <Grid container spacing={2}>
                 <Grid item xs={6}>

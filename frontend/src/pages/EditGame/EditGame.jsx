@@ -22,6 +22,7 @@ function EditGame (props) {
   const { getters } = useContext(Context);
   const { gameId } = useParams();
   const initialValues = { name: '', questions: [], thumbnail: '' };
+  const [savedInfo, setSavedInfo] = useState(initialValues);
   const [quizInfo, setQuizInfo] = useState(initialValues);
 
   const handleFileChange = (event) => {
@@ -50,6 +51,7 @@ function EditGame (props) {
     console.log(res);
     if (res.error) alert(res.error);
     else {
+      setSavedInfo(res);
       setQuizInfo(res);
     }
   }
@@ -64,7 +66,15 @@ function EditGame (props) {
     if (res.error) alert(res.error);
     else {
       alert('saved changes');
+      fetchQuizData();
     }
+  }
+
+  const disabledEdit = (id) => {
+    console.log(id);
+    const ob = savedInfo.questions?.find(x => x.id === id);
+    if (ob) return false;
+    else return true;
   }
 
   const navigateToQuestion = (id) => {
@@ -140,10 +150,10 @@ function EditGame (props) {
                     InputProps={{ readOnly: true }}
                     fullWidth
                   />
-                  <IconButton onClick={() => handleDeleteQuestion(index)}>
+                  <IconButton disabled={quizInfo.questions?.length <= 1} onClick={() => handleDeleteQuestion(index)}>
                     <Delete />
                   </IconButton>
-                  <IconButton onClick={() => navigateToQuestion(q.id)}>
+                  <IconButton disabled={disabledEdit(q.id)} onClick={() => navigateToQuestion(q.id)}>
                     <Edit />
                   </IconButton>
                 </Grid>
