@@ -30,4 +30,3 @@ export const fetchSessionId = async (token, quizId) => {
   if (res.error) console.log(res.error);
   else return res.active;
 }
-
