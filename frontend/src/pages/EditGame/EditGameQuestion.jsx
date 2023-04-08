@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Context, useContext } from '../../context';
@@ -8,10 +7,8 @@ import BackButton from '../../components/BackButton/BackButton';
 import AddItemDialog from '../../components/AddItemDialog/AddItemDialog';
 
 import Container from '@mui/material/Container';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
-import InputLabel from '@mui/material/InputLabel';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import Box from '@mui/material/Box';
@@ -33,10 +30,9 @@ function EditGameQuestion () {
 
   const quizInitial = { name: '', questions: [], thumbnail: '' };
   const [quizInfo, setQuizInfo] = useState(quizInitial);
-  const initialValues = { id: parseInt(questionId), question: '', url: '', multipleChoice: false, score: 0, options: [], timeLimit: 0 };
+  const initialValues = { id: parseInt(questionId), question: '', url: '', multipleChoice: false, score: 1, options: [], timeLimit: 10 };
   const [questionInfo, setQuestionInfo] = useState(initialValues);
 
-  const [selectCorrect, setSelectCorrect] = useState('');
   const [youtubeOpen, setYoutubeOpen] = useState(false);
 
   const handleButtonClick = () => {
@@ -90,7 +86,6 @@ function EditGameQuestion () {
         ...option,
         correct: false
       }));
-      setSelectCorrect('');
       setQuestionInfo({ ...questionInfo, multipleChoice: false, options: updatedOptions });
     }
   }
@@ -107,7 +102,6 @@ function EditGameQuestion () {
       correct: false
     }));
     updatedOptions[index].correct = true;
-    setSelectCorrect(name);
     setQuestionInfo({ ...questionInfo, options: updatedOptions });
   }
 
