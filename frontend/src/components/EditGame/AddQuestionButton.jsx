@@ -16,7 +16,8 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
   };
 
   const handleSaveQuestion = () => {
-    const updatedQuestions = [...quizInfo.questions, { id: quizInfo.questions.at(-1).id + 1, question: newQuestion }];
+    const id = quizInfo.questions?.length !== 0 ? quizInfo.questions[quizInfo.questions.length - 1].id + 1 : 1;
+    const updatedQuestions = [...quizInfo.questions, { id, question: newQuestion }];
     setQuizInfo({ ...quizInfo, questions: updatedQuestions });
 
     setModalOpen(false);

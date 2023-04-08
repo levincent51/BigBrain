@@ -94,7 +94,7 @@ function EditGame (props) {
               disabled
               fullWidth
             />
-            <Box width={'100%'} height={200}>
+            <Box>
               <CardMedia
                 component="img"
                 height="100%"
