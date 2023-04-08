@@ -17,7 +17,7 @@ const Navbar = (props) => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, position: 'fixed', top: 0, width: '100%', zIndex: 99 }}>
+      <Box sx={{ flexGrow: 1, position: 'fixed', top: 0, width: '100%', zIndex: 99, margin: '30px' }}>
         <AppBar position="fixed" style={{ top: 0, width: '100%' }}>
           <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -33,7 +33,7 @@ const Navbar = (props) => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Box sx={{ marginTop: '64px' }}> {/* 64px is the height of the navbar */}
+      <Box sx={{ marginTop: '100px' }}> {/* 64px is the height of the navbar */}
         <Outlet/>
       </Box>
     </>

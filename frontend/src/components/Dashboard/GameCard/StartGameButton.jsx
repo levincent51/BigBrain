@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useContext, Context } from '../../../context';
 import Button from '@mui/material/Button';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
@@ -11,34 +11,47 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import fetchAPI from '../../../utilities/fetch';
+import { fetchSessionId } from '../../../utilities/helpers';
 
-const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes }) => {
+const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessionId, setSessionId }) => {
   const { getters } = useContext(Context);
+  const [hasClickedOnButton, setHasClickedOnButton] = useState(false);
 
-  const copyToClip = () => navigator.clipboard.writeText(quizId);
+  const copyToClip = async () => {
+    navigator.clipboard.writeText(`localhost:3000/game/${sessionId}`)
+  };
 
   const startGame = async () => {
-    if (!isActive) {
-      console.log('started');
+    if (hasClickedOnButton) {
       setIsActive(true);
+    }
+
+    if (!isActive && !hasClickedOnButton) {
+      setHasClickedOnButton(true);
       const res = await fetchAPI('POST', getters.token, `admin/quiz/${quizId}/start`)
       if (res.error) console.log(res.error);
       await fetchAllQuizzes();
     }
   }
 
+  useEffect(async () => {
+    if (hasClickedOnButton) {
+      setSessionId(await fetchSessionId(getters.token, quizId))
+    }
+  }, [hasClickedOnButton])
+
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div onClick={startGame}>
-            <Button
-              variant="contained"
-              endIcon={<PlayCircleOutlineIcon/>}
-              {...bindTrigger(popupState)}
-              sx={{ backgroundColor: 'tomato', width: '90%', height: '24px', position: 'absolute', bottom: '5%', left: '5%', fontSize: '11px' }}
-            >
-            {!isActive ? 'Start Quiz' : 'Get Quiz Code'}
-            </Button>
+          <Button
+            variant="contained"
+            endIcon={<PlayCircleOutlineIcon/>}
+            {...bindTrigger(popupState)}
+            sx={{ backgroundColor: 'green', width: '90%', height: '24px', position: 'absolute', bottom: '5%', left: '5%', fontSize: '11px' }}
+          >
+            {'Start Quiz'}
+          </Button>
             <Popover
             {...bindPopover(popupState)}
             anchorOrigin={{
@@ -62,10 +75,9 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes }) => 
               <Divider sx={{ height: 18, m: 0.2 }} orientation="vertical" />
               <InputBase
                 sx={{ ml: 1, flex: 1, width: '90px' }}
-                inputProps={{ 'aria-label': 'search google maps' }}
-                onChange={() => {}}
+                inputProps={{ 'aria-label': 'Game ID' }}
                 disabled
-                value={quizId}
+                value={sessionId}
               />
               <Divider sx={{ height: 18, m: 0.2 }} orientation="vertical" />
               <IconButton aria-label="createGame" size="small" onClick={copyToClip}>

@@ -14,15 +14,13 @@ const fetchAPI = async (method, token, path, body = null) => {
       headers,
       body: JSON.stringify(body),
     })
-    const data = await response.json()
-    return data;
+    return await response.json();
   } else {
     const response = await fetch(`http://localhost:${port}/${path}`, {
       method,
       headers,
     })
-    const data = await response.json()
-    return data;
+    return await response.json();
   }
 };
 

@@ -52,6 +52,11 @@ function EditGameQuestion () {
     setQuestionInfo({ ...questionInfo, [name]: value });
   }
 
+  const handleNumChange = (e) => {
+    const { name, value } = e.target;
+    setQuestionInfo({ ...questionInfo, [name]: parseInt(value) });
+  }
+
   const handleOptionChange = (e, index) => {
     const { value } = e.target;
     const updatedOptions = [...questionInfo.options];
@@ -269,7 +274,7 @@ function EditGameQuestion () {
                     }}
                     fullWidth
                     value={questionInfo.score}
-                    onChange={handleChange}
+                    onChange={handleNumChange}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -283,7 +288,7 @@ function EditGameQuestion () {
                       inputProps: { min: 0, max: 120 }
                     }}
                     value={questionInfo.timeLimit}
-                    onChange={handleChange}
+                    onChange={handleNumChange}
                   />
                 </Grid>
               </Grid>
