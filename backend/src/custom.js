@@ -4,8 +4,12 @@
  to return to a "player"
 */
 export const quizQuestionPublicReturn = question => {
-  console.log('See question: ', question);
-  return question;
+  const publicOptions = question.options.map(op => {
+    return op.name;
+  })
+  const publicQuestion = { ...question, options: publicOptions};
+  console.log(publicQuestion);
+  return publicQuestion;
 };
 
 /*
@@ -13,9 +17,7 @@ export const quizQuestionPublicReturn = question => {
  the correct answers (minimum 1).
 */
 export const quizQuestionGetCorrectAnswers = question => {
-  return [
-    123,
-  ]; // For a single answer
+  return question.options.map((op, i) => op.correct === true ? i : -1).filter(index => index !== -1);; // For a single answer
 };
 
 /*
@@ -23,11 +25,7 @@ export const quizQuestionGetCorrectAnswers = question => {
  all of the answers, correct or incorrect.
 */
 export const quizQuestionGetAnswers = question => {
-  return [
-    123,
-    456,
-    678,
-  ]; // For a single answer
+  return question.options.map((op, i) => { return i;}); // For a single answer
 };
 
 /*
@@ -35,5 +33,5 @@ export const quizQuestionGetAnswers = question => {
  of the question once it starts. (Seconds)
 */
 export const quizQuestionGetDuration = question => {
-  return 10;
+  return question.timeLimit;
 };
