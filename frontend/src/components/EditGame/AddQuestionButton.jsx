@@ -44,6 +44,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
             label="Question"
             variant="outlined"
             margin="normal"
+            autoFocus
             value={newQuestion}
             onChange={handleQuestionChange}
             aria-label='Add new question field'
