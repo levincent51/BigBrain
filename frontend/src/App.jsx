@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import Navbar from './components/Navbar/Navbar';
 import EditGame from './pages/EditGame/EditGame';
 import GamePage from './pages/Game/gamePage';
+import EditGameQuestion from './pages/EditGame/EditGameQuestion';
 
 function App () {
   const [token, setToken] = useState(initialValues.token);
@@ -23,8 +24,11 @@ function App () {
         <Routes>
           <Route path='/' element={<Navbar isLoggedIn={!!token}/>}>
             <Route path='/' element={token ? <Dashboard/> : <Welcome/>}/>
-            <Route path="/editgame/:id" element={
+            <Route path="/editgame/:gameId" element={
               <EditGame/>
+            } />
+            <Route path="/editgame/:gameId/:questionId" element={
+              <EditGameQuestion/>
             } />
             <Route path="/*" element={
               <>

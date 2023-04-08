@@ -2,60 +2,57 @@ import React, { useState } from 'react';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
 
-function AddQuestionButton ({ quizInfo, setQuizInfo }) {
+function AddItemDialog ({ handleSave, itemName }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [newQuestion, setNewQuestion] = useState('');
+  const [newItem, setNewItem] = useState('');
 
-  const handleQuestionChange = (event) => {
-    setNewQuestion(event.target.value);
+  const handleItemChange = (event) => {
+    setNewItem(event.target.value);
   };
 
-  const handleAddQuestion = () => {
+  const handleAddItem = () => {
     setModalOpen(true);
   };
 
-  const handleSaveQuestion = () => {
-    const id = quizInfo.questions?.length !== 0 ? quizInfo.questions[quizInfo.questions.length - 1].id + 1 : 1;
-    const updatedQuestions = [...quizInfo.questions, { id, question: newQuestion }];
-    setQuizInfo({ ...quizInfo, questions: updatedQuestions });
-
+  const handleSaveItem = () => {
+    handleSave(newItem);
     setModalOpen(false);
-    setNewQuestion('');
+    setNewItem('');
   };
 
   return (
     <>
       <Grid item xs={12}>
         <Button
+            aria-label={`Add new ${itemName} button`}
           variant="outlined"
           color="primary"
           startIcon={<AddCircleIcon />}
-          onClick={handleAddQuestion}
-          aria-label='Add new question button'
+          onClick={handleAddItem}
         >
-          Add Question
+          Add {itemName}
         </Button>
       </Grid>
       <Dialog maxWidth='lg' PaperProps={{ style: { minWidth: '60vh', maxWidth: '90vh' } }} open={modalOpen} onClose={() => setModalOpen(false)}>
-        <DialogTitle>Add New Question</DialogTitle>
+        <DialogTitle>Add New {itemName}</DialogTitle>
         <DialogContent>
           <TextField
-            label="Question"
+            aria-label={`Add new ${itemName} field`}
+            label={itemName}
             variant="outlined"
             margin="normal"
-            value={newQuestion}
-            onChange={handleQuestionChange}
-            aria-label='Add new question field'
+            value={newItem}
+            onChange={handleItemChange}
             fullWidth
           />
         </DialogContent>
         <DialogActions>
           <Button aria-label='cancel button' onClick={() => setModalOpen(false)}>Cancel</Button>
-          <Button aria-label='save button' onClick={handleSaveQuestion} color="primary">Save</Button>
+          <Button aria-label='save button' onClick={handleSaveItem} color="primary">Save</Button>
         </DialogActions>
       </Dialog>
     </>
   );
 }
 
-export default AddQuestionButton;
+export default AddItemDialog;

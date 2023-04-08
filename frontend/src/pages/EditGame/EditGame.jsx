@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import fetchAPI from '../../utilities/fetch';
 import { Context, useContext } from '../../context';
+import BackButton from '../../components/BackButton/BackButton';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -17,10 +18,9 @@ import brainlogo from '../../components/Dashboard/GameCard/brainlogo.jpg'
 import AddQuestionButton from '../../components/EditGame/AddQuestionButton';
 
 function EditGame (props) {
-  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
   const { getters } = useContext(Context);
-  const { id } = useParams();
+  const { gameId } = useParams();
   const initialValues = { name: '', questions: [], thumbnail: '' };
   const [quizInfo, setQuizInfo] = useState(initialValues);
 
@@ -46,8 +46,7 @@ function EditGame (props) {
   };
 
   const fetchQuizData = async () => {
-    console.log(id);
-    const res = await fetchAPI('GET', getters.token, `admin/quiz/${id}`)
+    const res = await fetchAPI('GET', getters.token, `admin/quiz/${gameId}`)
     console.log(res);
     if (res.error) alert(res.error);
     else {
@@ -61,11 +60,15 @@ function EditGame (props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetchAPI('PUT', getters.token, `admin/quiz/${id}`, quizInfo)
+    const res = await fetchAPI('PUT', getters.token, `admin/quiz/${gameId}`, quizInfo)
     if (res.error) alert(res.error);
     else {
       alert('saved changes');
     }
+  }
+
+  const navigateToQuestion = (id) => {
+    navigate(`/editgame/${gameId}/${id}`);
   }
 
   return (
@@ -74,9 +77,14 @@ function EditGame (props) {
       <Paper variant="outlined">
         <form onSubmit={fetchQuizData}>
           <Box p={2}>
-            <Typography variant="h6" gutterBottom>
-              Edit Game
-            </Typography>
+            <Box display="flex" justifyContent='space-between'>
+              <Typography variant="h6" gutterBottom>
+                Edit Game
+              </Typography>
+              <Box display="flex" justifyContent="flex-end" mb={2}>
+                <BackButton path={'/'}/>
+              </Box>
+            </Box>
             <TextField
               label="Name"
               variant="outlined"
@@ -135,7 +143,7 @@ function EditGame (props) {
                   <IconButton onClick={() => handleDeleteQuestion(index)}>
                     <Delete />
                   </IconButton>
-                  <IconButton onClick={() => fetchQuizData /* TODO */}>
+                  <IconButton onClick={() => navigateToQuestion(q.id)}>
                     <Edit />
                   </IconButton>
                 </Grid>
