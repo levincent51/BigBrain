@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+// import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddIcon from '@mui/icons-material/Add';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
 
 function AddQuestionButton ({ quizInfo, setQuizInfo }) {
@@ -28,7 +29,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
         <Button
           variant="outlined"
           color="primary"
-          startIcon={<AddCircleIcon />}
+          startIcon={<AddIcon />}
           onClick={handleAddQuestion}
         >
           Add Question

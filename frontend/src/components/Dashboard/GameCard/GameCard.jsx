@@ -16,6 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import StartGameButton from './StartGameButton';
+import StopGameButton from './StopGameButton';
 
 const Games = ({ quiz, fetchAllQuizzes }) => {
   const navigate = useNavigate();
@@ -24,13 +25,13 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   const [numQuestions, setNumQuestions] = useState(0);
   const [quizLength, setQuizLength] = useState(0);
   const [hoveringEdit, setHoveringEdit] = useState(false);
+  const [sessionId, setSessionId] = useState('');
   const [isActive, setIsActive] = useState(null)
 
   const fetchQuizData = async () => {
     const res = await fetchAPI('GET', getters.token, `admin/quiz/${quiz.id}`)
     if (res.error) alert(res.error);
     else {
-      console.log(res);
       setNumQuestions(res.questions.length)
       let total = 0;
       res.questions.forEach(q => {
@@ -101,7 +102,23 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
         <CardActions
           sx={{ justifyContent: 'center' }}
         >
-        <StartGameButton quizId={quiz.id} isActive={isActive} setIsActive={setIsActive} fetchAllQuizzes={fetchAllQuizzes}/>
+        {isActive 
+        ? <StopGameButton 
+            quizId={quiz.id} 
+            isActive={isActive} 
+            setIsActive={setIsActive} 
+            fetchAllQuizzes={fetchAllQuizzes}
+            sessionId={sessionId}
+          />
+        : <StartGameButton 
+            quizId={quiz.id}
+            isActive={isActive} 
+            setIsActive={setIsActive} 
+            fetchAllQuizzes={fetchAllQuizzes}
+            sessionId={sessionId}
+            setSessionId={setSessionId}
+          />
+        }   
       </CardActions>
     </Card>
   );

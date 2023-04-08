@@ -13,6 +13,7 @@ export const loginValidator = (body) => {
 
   return errors;
 }
+
 export const registerValidator = (body) => {
   const errors = {};
   const nameRegex = /^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/;

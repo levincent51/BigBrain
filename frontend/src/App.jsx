@@ -6,7 +6,8 @@ import Welcome from './pages/LoginPage/Welcome';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Navbar from './components/Navbar/Navbar';
 import EditGame from './pages/EditGame/EditGame';
-import GamePage from './pages/Game/gamePage';
+import GamePage from './pages/Game/GamePage';
+import GameResultPage from './pages/Game/GameResultPage';
 
 function App () {
   const [token, setToken] = useState(initialValues.token);
@@ -26,6 +27,12 @@ function App () {
             <Route path="/editgame/:id" element={
               <EditGame/>
             } />
+              <Route path="/game/:sessionId" element={
+            <GamePage/>
+            } />
+            <Route path="/game/result/:gameId/:sessionId" element={
+              <GameResultPage/>
+            } />
             <Route path="/*" element={
               <>
                 <div>NO MATCHING ROUTE</div>
@@ -44,9 +51,6 @@ function App () {
           } />
           <Route path="/register" element={
             <LoginPage/>
-          } />
-          <Route path="/game/:gameId" element={
-            <GamePage/>
           } />
         </Routes>
       </BrowserRouter>
