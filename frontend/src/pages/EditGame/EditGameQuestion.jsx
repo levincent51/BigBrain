@@ -15,13 +15,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Paper, Grid, IconButton } from '@mui/material';
+import { Paper, Grid } from '@mui/material';
 import Delete from '@mui/icons-material/Delete';
 import ImageIcon from '@mui/icons-material/Image';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import ClearIcon from '@mui/icons-material/Clear';
+import IconButton from '@mui/material/IconButton';
 
-function EditGameQuestion () {
+const EditGameQuestion = () => {
   const { getters } = useContext(Context);
   const { questionId } = useParams();
   const navigate = useNavigate();
@@ -142,14 +143,14 @@ function EditGameQuestion () {
     <Container maxWidth="sm">
       <Box my={4}>
         <Paper variant="outlined">
-          <form onSubmit={() => console.log('h')}>
-            <Box p={2}>
+          <Box p={2}>
+            <form onSubmit={handleSubmit}>
               <Box display="flex" justifyContent='space-between'>
                 <Typography variant="h6" gutterBottom>
                   Edit Question
                 </Typography>
                 <Box display="flex" justifyContent="flex-end" mb={2}>
-                  <BackButton path={`/editgame/${gameId}/`}/>
+                  <BackButton path={`/editgame/${gameId}/`} />
                 </Box>
               </Box>
               <TextField
@@ -196,7 +197,7 @@ function EditGameQuestion () {
                   size="medium"
                   onClick={handleButtonClick}
                   endIcon={<InsertLinkIcon />}
-                  >
+                >
                   Insert YouTube Link
                 </Button>
                 <Button
@@ -204,11 +205,11 @@ function EditGameQuestion () {
                   size="medium"
                   onClick={handleClearURL}
                   endIcon={<ClearIcon />}
-                  >
+                >
                   Clear URL
                 </Button>
               </Box>
-              <YoutubeLinkDialog open={youtubeOpen} onClose={handleCloseDialog} questionInfo={questionInfo} setQuestionInfo={setQuestionInfo}/>
+              <YoutubeLinkDialog open={youtubeOpen} onClose={handleCloseDialog} questionInfo={questionInfo} setQuestionInfo={setQuestionInfo} />
 
               <Typography>Question Type</Typography>
               <Box paddingBottom={2}>
@@ -238,14 +239,14 @@ function EditGameQuestion () {
                     />
                     {questionInfo.multipleChoice
                       ? <Checkbox
-                          checked={op.correct}
-                          onChange={() => handleCheck(index)}
-                        />
+                        checked={op.correct}
+                        onChange={() => handleCheck(index)}
+                      />
                       : <Radio
-                          value={op.name}
-                          checked={op.correct}
-                          onChange={() => handleRadio(op.name, index)}
-                        />}
+                        value={op.name}
+                        checked={op.correct}
+                        onChange={() => handleRadio(op.name, index)}
+                      />}
 
                     <IconButton disabled={questionInfo.options?.length <= 2} onClick={() => handleDeleteOptions(index)}>
                       <Delete />
@@ -254,7 +255,7 @@ function EditGameQuestion () {
                 ))}
               </Grid>
               <Box display='flex' justifyContent='space-between' paddingY={2}>
-                <AddItemDialog limit={6} current={questionInfo.options.length} itemName='Option' handleSave={handleOptionSave}/>
+                <AddItemDialog limit={6} current={questionInfo.options.length} itemName='Option' handleSave={handleOptionSave} />
               </Box>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -291,8 +292,8 @@ function EditGameQuestion () {
                   Save Changes
                 </Button>
               </Box>
-            </Box>
-          </form>
+            </form>
+          </Box>
         </Paper>
       </Box>
     </Container>
