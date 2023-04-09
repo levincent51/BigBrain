@@ -212,6 +212,8 @@ const EditQuestionForm = (props) => {
       <Box display='flex' justifyContent='space-between' paddingY={2}>
         <AddItemDialog limit={6} current={questionInfo.options.length} itemName='Option' handleSave={handleOptionSave} />
       </Box>
+      <Typography variant='subtitle2'>Note: Minimum of 2 questions, maximum of 6</Typography>
+
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <TextField
@@ -242,6 +244,7 @@ const EditQuestionForm = (props) => {
           />
         </Grid>
       </Grid>
+
       <Box mt={2} display="flex" justifyContent="center">
         <Button fullWidth variant="contained" color="primary" type="submit" onClick={handleSubmit}>
           Save Changes

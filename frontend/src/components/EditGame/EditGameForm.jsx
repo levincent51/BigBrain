@@ -96,7 +96,7 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
       <Typography variant="h6" gutterBottom>
         Questions
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} paddingBottom={2}>
         {quizInfo.questions?.map((q, index) => (
           <Grid item xs={12} key={index} style={{ display: 'flex', alignItems: 'center' }}>
             <TextField
@@ -116,8 +116,8 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
           </Grid>
         ))}
         <AddQuestionButton aria-label='Add question' quizInfo={quizInfo} setQuizInfo={setQuizInfo}></AddQuestionButton>
-
       </Grid>
+      <Typography variant='subtitle2'>Note: You must save changes for new questions to access them</Typography>
       <Box mt={2} display="flex" justifyContent="center">
         <Button fullWidth aria-label='save game changes' variant="contained" color="primary" type="submit" onClick={handleSubmit}>
           Save Changes

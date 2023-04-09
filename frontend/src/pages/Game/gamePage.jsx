@@ -7,34 +7,34 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Lobby from '../../components/GameResults/Lobby';
 
-const gamePage = () => {
+const GamePage = () => {
   const params = useParams();
   const playerId = params.playerId;
-  const [quizStatus, setQuizStatus] = useState();
-  const [intervalId, setIntervalId] = useState();
+  const [quizStatus, setQuizStatus] = useState('pending');
 
   useEffect(() => {
-    const intId = setInterval(playerGetStatus, 1000);
-    console.log('INTERVAL ID', intId);
-    setIntervalId(intId);
-  }, []);
+    const intervalId = setInterval(async () => {
+      const res = await fetchAPI('GET', null, `play/${playerId}/status`)
+      if (res.error) {
+        clearInterval(intervalId);
+        setQuizStatus('ended');
+        console.log('ENDED!!');
+      } else if (res.started) {
+        console.log('Startedd!!');
+        setQuizStatus('started');
+      }
+    }, 1000);
 
-  const playerGetStatus = async () => {
-    const res = await fetchAPI('GET', null, `play/${playerId}/status`);
-    if (res.error) {
-      console.log('--------------------------------', intervalId, 'interval id ');
-      clearInterval(intervalId);
-    } else {
-      setQuizStatus(res.started);
-    }
-  }
+    return () => clearInterval(intervalId);
+  }, [playerId]);
+
   return (
     <Container>
-      {quizStatus === true
-        ? 'started'
-        : <Lobby/>}
+      {quizStatus === 'pending' && <Lobby/>}
+      {quizStatus === 'started' && <p>The game has started!</p>}
+      {quizStatus === 'ended' && <p>The game has ended.</p>}
     </Container>
   )
 };
 
-export default gamePage;
+export default GamePage;

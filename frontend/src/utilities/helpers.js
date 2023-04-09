@@ -34,7 +34,7 @@ export const fetchSessionId = async (token, quizId) => {
 }
 
 export const joinSession = async (sessionId, name) => {
-  const res = await fetchAPI('POST', null, `play/join/${sessionId}`, {name: name});
+  const res = await fetchAPI('POST', null, `play/join/${sessionId}`, { name: name });
   if (res.error) console.log(res.error);
   else return res.playerId;
 }
@@ -44,5 +44,5 @@ export const playerGetStatus = async (playerId) => {
   if (res.error) console.log(res.error)
   else {
     return res.started;
-  };
+  }
 }

@@ -47,12 +47,6 @@ function App () {
                 <button onClick={() => window.location.replace('/')}>Go back</button>
               </>
             } />
-            <Route path="/*" element={
-            <>
-              <div>NO MATCHING ROUTE</div>
-              <button onClick={() => window.location.replace('/')}>Go back</button>
-            </>
-          } />
           </Route>
           <Route path="/login" element={
             <LoginPage/>
