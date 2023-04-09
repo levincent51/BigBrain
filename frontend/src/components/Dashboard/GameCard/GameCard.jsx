@@ -29,7 +29,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   const [isActive, setIsActive] = useState(null)
 
   const fetchQuizData = async () => {
-    const res = await fetchAPI('GET', getters.token, `admin/quiz/${quiz.id}`)
+    const res = await fetchAPI('GET', getters?.token, `admin/quiz/${quiz.id}`)
     if (res.error) alert(res.error);
     else {
       setNumQuestions(res.questions.length)
@@ -48,7 +48,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   }
 
   const deleteQuiz = async () => {
-    const res = await fetchAPI('DELETE', getters.token, `admin/quiz/${quiz.id}`)
+    const res = await fetchAPI('DELETE', getters?.token, `admin/quiz/${quiz.id}`)
     if (res.error) alert(res.error);
     else {
       await fetchAllQuizzes();
