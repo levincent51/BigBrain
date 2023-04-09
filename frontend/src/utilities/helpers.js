@@ -12,7 +12,7 @@ export const advanceGame = async (quizId, token) => {
 
 export const fetchGameResults = async (token, sessionId) => {
   const res = await fetchAPI('GET', token, `admin/session/${sessionId}/results`);
-  if (res.error) alert(res.error);
+  if (res.error) console.log(res.error);
   else {
     console.log(res);
     return res

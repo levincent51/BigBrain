@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useContext, Context } from '../../context';
 import { useParams } from 'react-router-dom';
 import { playerGetStatus } from '../../utilities/helpers';
+import ElevatorMusic from './elevator-music.mp3';
+import LobbyVideo from './lobbyVideo.webm';
+import ReactPlayer from 'react-player';
 
 const gamePage = ({ quizId }) => {
   const params = useParams();
@@ -10,24 +13,33 @@ const gamePage = ({ quizId }) => {
   const { getters } = useContext(Context);
   const [quizStatus, setQuizStatus] = useState({});
 
-  // const getGameStatus = async () => {
-  //   const res = await playerGetStatus(playerId);
-  //   console.log(res);
-  //   setQuizStatus(res);
-  // }
+  let audio = useRef();
 
-  const audio = new Audio('test.mp3');
-  audio.play();
+  useEffect(async () => {
+    audio = new Audio(ElevatorMusic);
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.play();
+  }, []);
 
-  // useEffect(async () => {
-  //   await getGameStatus();
-  // }, []);
+  useEffect(() => {
+    return () => {
+      audio.pause()
+      console.log("in cleanup")
+    }
+  }, [])
 
   return (
     <>
-      <div>
-        {params.playerId}
-      </div>
+      <h1>
+        Lobby
+      </h1>
+      <ReactPlayer
+        url={LobbyVideo}
+        playing={true}
+        width={'100%'}
+        height={'100%'}
+      />
     </>
   );
 };

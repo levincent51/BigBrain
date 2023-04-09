@@ -11,6 +11,7 @@ const Results = () => {
   const [results, setResults] = useState({});
 
   useEffect(async () => {
+    console.log('LOADING IN RESULTS');
     setResults(await fetchGameResults(getters.token, sessionId));
   }, []);
 

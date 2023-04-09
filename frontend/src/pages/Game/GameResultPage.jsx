@@ -14,7 +14,7 @@ const gameResultsPage = () => {
   const [quizResults, setQuizResults] = useState();
   const [quizProgress, setQuizProgress] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
-  const [active, setActive] = useState();
+  const [active, setActive] = useState(true);
 
   const loadGameStatus = async () => {
     const quizResults = await fetchGameStatus(getters.token, sessionId);
