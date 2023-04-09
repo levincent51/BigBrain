@@ -40,6 +40,7 @@ function AddItemDialog ({ limit, current, handleSave, itemName }) {
           <TextField
             aria-label={`Add new ${itemName} field`}
             label={itemName}
+            autoFocus
             variant="outlined"
             margin="normal"
             value={newItem}

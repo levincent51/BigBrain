@@ -17,7 +17,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
 
   const handleSaveQuestion = () => {
     const id = quizInfo.questions?.length !== 0 ? quizInfo.questions[quizInfo.questions.length - 1].id + 1 : 1;
-    const updatedQuestions = [...quizInfo.questions, { id, question: newQuestion }];
+    const updatedQuestions = [...quizInfo.questions, { id, question: newQuestion, score: 1, timeLimit: 10 }];
     setQuizInfo({ ...quizInfo, questions: updatedQuestions });
 
     setModalOpen(false);
@@ -44,6 +44,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
             label="Question"
             variant="outlined"
             margin="normal"
+            autoFocus
             value={newQuestion}
             onChange={handleQuestionChange}
             aria-label='Add new question field'
