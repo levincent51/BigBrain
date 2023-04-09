@@ -4,21 +4,24 @@ import { useContext, Context } from '../../context';
 import { useParams } from 'react-router-dom';
 import { playerGetStatus } from '../../utilities/helpers';
 
-const gamePage = (props) => {
+const gamePage = ({ quizId }) => {
   const params = useParams();
   const playerId = params.playerId;
-  // const { getters } = useContext(Context);
+  const { getters } = useContext(Context);
   const [quizStatus, setQuizStatus] = useState({});
-    
-  const getGameStatus = async () => {
-    const res = await playerGetStatus(playerId);
-    console.log(res);
-    setQuizStatus(res);
-  }
 
-  useEffect(async () => {
-    await getGameStatus();
-  }, []);
+  // const getGameStatus = async () => {
+  //   const res = await playerGetStatus(playerId);
+  //   console.log(res);
+  //   setQuizStatus(res);
+  // }
+
+  const audio = new Audio('test.mp3');
+  audio.play();
+
+  // useEffect(async () => {
+  //   await getGameStatus();
+  // }, []);
 
   return (
     <>

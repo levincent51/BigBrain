@@ -4,6 +4,7 @@ import { useContext, Context } from '../../context';
 import { useParams } from 'react-router-dom';
 import { fetchGameStatus } from '../../utilities/helpers';
 import GameController from '../../components/GameResults/GameController';
+import Results from '../../components/GameResults/Results';
 
 const gameResultsPage = () => {
   const params = useParams();
@@ -38,7 +39,7 @@ const gameResultsPage = () => {
               quizProgress={quizProgress}
               totalQuestions={totalQuestions}
           />
-          : 'Results here'
+          : <Results/>
       }
     </>
   );

@@ -5,9 +5,9 @@ import fetchAPI from '../../utilities/fetch';
 import { useParams, useNavigate } from 'react-router-dom';
 // import { playerGetStatus } from '../../utilities/helpers';
 import Container from '@mui/material/Container';
+import Lobby from '../../components/GameResults/Lobby';
 
 const gamePage = () => {
-  const navigate = useNavigate();
   const params = useParams();
   const playerId = params.playerId;
   const [quizStatus, setQuizStatus] = useState();
@@ -19,7 +19,6 @@ const gamePage = () => {
     setIntervalId(intId);
   }, []);
 
-  // const { data } = useSWR(playerId, playerGetStatus);
   const playerGetStatus = async () => {
     const res = await fetchAPI('GET', null, `play/${playerId}/status`);
     if (res.error) {
@@ -31,7 +30,9 @@ const gamePage = () => {
   }
   return (
     <Container>
-      {quizStatus === true ? 'started' : 'no'}
+      {quizStatus === true
+        ? 'started'
+        : <Lobby/>}
     </Container>
   )
 };
