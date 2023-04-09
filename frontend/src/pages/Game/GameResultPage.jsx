@@ -32,11 +32,11 @@ const gameResultsPage = () => {
       {
         active
           ? <GameController
-            quizId={quizId}
-            sessionId={sessionId}
-            loadGameStatus={loadGameStatus}
-            quizProgress={quizProgress}
-            totalQuestions={totalQuestions}
+              quizId={quizId}
+              sessionId={sessionId}
+              loadGameStatus={loadGameStatus}
+              quizProgress={quizProgress}
+              totalQuestions={totalQuestions}
           />
           : 'Results here'
       }

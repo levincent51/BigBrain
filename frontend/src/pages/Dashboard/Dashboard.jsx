@@ -5,6 +5,7 @@ import fetchAPI from '../../utilities/fetch';
 import GamesCard from '../../components/Dashboard/GameCard/GameCard';
 import Grid2 from '@mui/material/Unstable_Grid2';
 import CreateGameCard from '../../components/Dashboard/CreateGameCard/CreateGameCard'
+import Container from '@mui/material/Container';
 
 const Dashboard = (props) => {
   const { getters, setters } = useContext(Context);
@@ -24,7 +25,7 @@ const Dashboard = (props) => {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h1>My Games</h1>
       <Grid2 container spacing={2}>
         <Grid2>
@@ -36,7 +37,7 @@ const Dashboard = (props) => {
           </Grid2>
         ))}
       </Grid2>
-    </div>
+    </Container>
   );
 };
 

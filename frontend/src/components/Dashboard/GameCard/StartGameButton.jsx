@@ -18,7 +18,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
   const [hasClickedOnButton, setHasClickedOnButton] = useState(false);
 
   const copyToClip = async () => {
-    navigator.clipboard.writeText(`localhost:3000/game/${sessionId}`)
+    navigator.clipboard.writeText(`localhost:3000/game/join/${sessionId}`)
   };
 
   const startGame = async () => {

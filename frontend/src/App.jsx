@@ -6,9 +6,10 @@ import Welcome from './pages/LoginPage/Welcome';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Navbar from './components/Navbar/Navbar';
 import EditGame from './pages/EditGame/EditGame';
-import GamePage from './pages/Game/gamePage';
+import GamePage from './pages/Game/GamePage';
 import EditGameQuestion from './pages/EditGame/EditGameQuestion';
 import GameResultPage from './pages/Game/GameResultPage';
+import JoinGame from './pages/JoinGame/JoinGame';
 
 function App () {
   const [token, setToken] = useState(initialValues.token);
@@ -31,9 +32,12 @@ function App () {
             <Route path="/editgame/:gameId/:questionId" element={
               <EditGameQuestion/>
             } />
-            <Route path="/game/:sessionId" element={
+            <Route path="/game/play/:playerId" element={
               <GamePage/>
-              } />
+            } />
+            <Route path="/game/join/:sessionId" element={
+              <JoinGame/>
+            } />
             <Route path="/game/result/:gameId/:sessionId" element={
               <GameResultPage/>
             } />

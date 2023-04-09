@@ -26,7 +26,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
     }
   }
 
-  const viewResults = async () => {
+  const viewResults = () => {
     navigate(`/game/result/${quizId}/${sessionId}`);
   }
 
