@@ -17,6 +17,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
 
   const { getters } = useContext(Context);
   const [hasClickedOnButton, setHasClickedOnButton] = useState(false);
+  const [sesId, setSesId] = useState(sessionId);
 
   const stopGame = async () => {
     if (hasClickedOnButton) {
@@ -24,13 +25,14 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
     }
     if (isActive && !hasClickedOnButton) {
       setHasClickedOnButton(true);
+      setSesId(sessionId);
       await endGame(quizId, getters.token);
       await fetchAllQuizzes();
     }
   }
 
   const viewResults = () => {
-    navigate(`/game/result/${quizId}/${sessionId}`);
+    navigate(`/game/result/${quizId}/${sesId}`);
   }
 
   return (

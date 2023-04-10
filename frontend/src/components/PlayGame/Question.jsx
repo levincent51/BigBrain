@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import fetchAPI from '../../utilities/fetch';
 import {
   Card,
+  Box,
   CardContent,
-  CardMedia,
   Typography,
   FormControl,
   FormGroup,
@@ -15,8 +15,6 @@ import TimerIcon from '@mui/icons-material/Timer';
 
 const Question = ({ playerId, question, answer, timeLeft }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [isLoading, setIsLoading] = useState(question.url !== '');
-
   const handleOptionChange = (optionIndex) => {
     if (question.multipleChoice) {
       // If multiple options can be selected, toggle the selected option
@@ -43,61 +41,52 @@ const Question = ({ playerId, question, answer, timeLeft }) => {
     if (res.error) alert(res.error);
   }
 
-  const handleLoad = () => {
-    setIsLoading(false);
-  };
-
   return (
-    <Card>
-      {question?.url !== '' && (
-        <CardMedia
-          component="img"
-          image={question?.url}
-          onLoad={handleLoad}
-        />
-      )}
-      {isLoading && (
-        <div>
-          <CircularProgress />
-        </div>
-      )}
-      <div>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {question.question}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Score: {question.score}
-          </Typography>
-        </CardContent>
-        {timeLeft && (
-          <div>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <TimerIcon/> {timeLeft} secs left
-            </Typography>
-          </div>
+    question.id !== -1
+      ? <Card>
+        {question?.url !== '' && (
+          <Box>
+            <iframe width="500px" height="300px" src={question?.url} aria-label='question url media' alt='question url media' ></iframe>
+          </Box>
         )}
-        <Typography variant="body2" color="textSecondary" component="p">
-          {question?.multipleChoice ? 'Please select MULTIPLE options' : 'Please select ONE option'}
-        </Typography>
-        <FormControl component="fieldset">
-          <FormGroup>
-            {question?.options.map((option, index) => (
-              <FormControlLabel
-                key={index}
-                control={
-                  <Checkbox
-                    checked={selectedOptions.includes(index)}
-                    onChange={() => handleOptionChange(index)}
-                  />
-                }
-                label={option}
-              />
-            ))}
-          </FormGroup>
-        </FormControl>
-      </div>
-    </Card>
+        <div>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {question.question}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Score: {question.score}
+            </Typography>
+          </CardContent>
+          {timeLeft && (
+            <div>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <TimerIcon /> {timeLeft} secs left
+              </Typography>
+            </div>
+          )}
+          <Typography variant="body2" color="textSecondary" component="p">
+            {question?.multipleChoice ? 'Please select MULTIPLE options' : 'Please select ONE option'}
+          </Typography>
+          <FormControl component="fieldset">
+            <FormGroup>
+              {question?.options.map((option, index) => (
+                <FormControlLabel
+                  key={index}
+                  control={
+                    <Checkbox
+                      checked={selectedOptions.includes(index)}
+                      onChange={() => handleOptionChange(index)}
+                    />
+                  }
+                  label={option}
+                />
+              ))}
+            </FormGroup>
+          </FormControl>
+        </div>
+      </Card>
+      : <CircularProgress />
   );
 };
 

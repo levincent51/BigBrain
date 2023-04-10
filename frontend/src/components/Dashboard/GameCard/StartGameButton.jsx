@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useContext, Context } from '../../../context';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import Popover from '@mui/material/Popover';
@@ -16,9 +17,11 @@ import { fetchSessionId } from '../../../utilities/helpers';
 const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessionId, setSessionId }) => {
   const { getters } = useContext(Context);
   const [hasClickedOnButton, setHasClickedOnButton] = useState(false);
+  const navigate = useNavigate();
 
   const copyToClip = async () => {
     navigator.clipboard.writeText(`localhost:3000/game/join/${sessionId}`)
+    navigate(`/game/result/${quizId}/${sessionId}`);
   };
 
   const startGame = async () => {
