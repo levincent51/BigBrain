@@ -74,6 +74,7 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
           height="100%"
           image={quizInfo?.thumbnail ? quizInfo?.thumbnail : brainlogo}
           alt="Quiz thumbnail"
+          aria-label='Quiz thumbnail'
         />
       </Box>
       <input
@@ -88,7 +89,7 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
           aria-label='upload thumbnail'
           component="span"
           size="medium"
-          endIcon={<ImageIcon />}
+          endIcon={<ImageIcon aria-label='upload thumbnail icon' />}
         >
           Upload New Thumbnail
         </Button>
