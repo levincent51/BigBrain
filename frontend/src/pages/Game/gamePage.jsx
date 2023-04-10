@@ -71,9 +71,9 @@ const GamePage = () => {
         } else {
           console.log(question, res.question);
           // Compare previous question ID with new question ID
+          setQuestion(res.question);
           if (question?.id !== res.question.id && question !== null) {
             console.log('NEXT QUESTION');
-            setQuestion(res.question);
             setAnswer(null);
           } else {
             const currentTime = new Date().toISOString();
@@ -84,7 +84,6 @@ const GamePage = () => {
               console.log(answerRes);
               setAnswer(answerRes.answerIds);
             }
-            setQuestion(res.question);
           }
         }
       }, 1000);
