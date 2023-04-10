@@ -388,7 +388,7 @@ submit is your own work (as described above).
 Note you will not be penalized if your work has the potential to be taken without your consent or
 knowledge.
 
-**PLEASE NOTE: To ensure the originality of your work, we are requiring that you regularly commit your work to git throughout the weeks this assignment has been released. Regular and small commits and critical. Failures to commit regularly (or at minimum, failures to commit in small chunks) may result in allegations of plagiarism**
+**PLEASE NOTE: To ensure the originality of your work, we are requiring that you regularly commit your work to git throughout the weeks this assignment has been released. Regular and small commits (essentially at least once a day that you work on the assignment) are critical. Failures to commit regularly (or at minimum, failures to commit in small chunks) may result in allegations of plagiarism.**
 
 ## 8. Submission
 
