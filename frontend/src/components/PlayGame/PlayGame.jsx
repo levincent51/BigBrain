@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import fetchAPI from '../../utilities/fetch';
+import Question from './Question';
 
 const PlayGame = ({ playerId, quizStatus, question, answer, setAnswer, setQuestion }) => {
   const [timeLeft, setTimeLeft] = useState(null);
@@ -50,7 +50,7 @@ const PlayGame = ({ playerId, quizStatus, question, answer, setAnswer, setQuesti
 
   return (
     <>
-      {answer === null ? <p>The game has started! this is the question {question?.question} TIME LEFT {timeLeft}</p> : <p>THIS IS THE ANSWERS {answer}</p>}
+      {answer === null ? <Question playerId={playerId} question={question} answer={answer} timeLeft={timeLeft}/> : <p>THIS IS THE ANSWERS {answer}</p>}
     </>
   );
 }

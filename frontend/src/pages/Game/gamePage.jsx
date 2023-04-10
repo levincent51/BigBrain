@@ -12,7 +12,7 @@ const GamePage = () => {
   const params = useParams();
   const playerId = params.playerId;
   const [quizStatus, setQuizStatus] = useState('pending');
-  const [question, setQuestion] = useState(null);
+  const [question, setQuestion] = useState({ id: -1, question: '', url: '', multipleChoice: false, score: 0, options: [], timeLimit: 99 });
   const [answer, setAnswer] = useState(null);
 
   const fetchQuizResult = async () => {
