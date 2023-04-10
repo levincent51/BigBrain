@@ -644,7 +644,7 @@
         },
         "/admin/quiz": {
             "get": {
-                "summary": "Get a list of the meta-data for all BigBrain quizzes",
+                "summary": "Get a list of the meta-data for all BigBrain quizzes owned by the admin",
                 "security": [{ "bearerAuth": [] }],
                 "tags": [ "Admin Quiz Management" ],
                 "parameters": [
