@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext, Context } from '../../context';
+import BackButton from '../BackButton/BackButton';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -54,6 +55,7 @@ const GameController = ({ quizId, sessionId, loadGameStatus, quizProgress, total
       component="form"
       sx={{ p: '10px 10px', display: 'flex', alignItems: 'center', margin: '30px', width: 'fit-content', gap: '10px' }}
     >
+      <BackButton path='/'/>
       <InputBase
         sx={{ m: 1, flex: 1, width: '60px' }}
         inputProps={{ 'aria-label': 'Game ID' }}

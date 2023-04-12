@@ -127,7 +127,7 @@ const EditQuestionForm = (props) => {
         disabled
       />
       {questionInfo.url && <Box>
-        <iframe width="100%" height="300px" src={questionInfo.url} ></iframe>
+        <iframe width="100%" height="300px" src={questionInfo.url} aria-label='question url media' alt='question url media' ></iframe>
       </Box>}
 
       <Box display="flex" alignItems="center" justifyContent="space-between" paddingBottom={2}>

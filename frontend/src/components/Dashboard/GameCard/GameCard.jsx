@@ -108,7 +108,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
             isActive={isActive}
             setIsActive={setIsActive}
             fetchAllQuizzes={fetchAllQuizzes}
-            sessionId={sessionId}
+            sessionId={quiz.active}
           />
           : <StartGameButton
             quizId={quiz.id}
