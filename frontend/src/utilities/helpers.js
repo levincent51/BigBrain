@@ -14,9 +14,13 @@ export const fetchGameResults = async (token, sessionId) => {
   const res = await fetchAPI('GET', token, `admin/session/${sessionId}/results`);
   if (res.error) console.log(res.error);
   else {
-    console.log(res);
-    return res
+    return res.results
   }
+}
+
+export const fetchGameQuestions = async (token, sessionId) => {
+  const res = await fetchGameStatus(token, sessionId);
+  return res.questions;
 }
 
 export const fetchGameStatus = async (token, sessionId) => {
@@ -34,7 +38,7 @@ export const fetchSessionId = async (token, quizId) => {
 }
 
 export const joinSession = async (sessionId, name) => {
-  const res = await fetchAPI('POST', null, `play/join/${sessionId}`, { name: name });
+  const res = await fetchAPI('POST', null, `play/join/${sessionId}`, { name });
   if (res.error) console.log(res.error);
   else return res.playerId;
 }

@@ -1,17 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useContext, Context } from '../../context';
 import { useParams } from 'react-router-dom';
 import { fetchGameStatus } from '../../utilities/helpers';
 import GameController from '../../components/GameResults/GameController';
-import Results from '../../components/GameResults/Results';
+import AdminResults from '../../components/GameResults/AdminResults';
+import Container from '@mui/material/Container';
 
 const gameResultsPage = () => {
   const params = useParams();
   const quizId = params.gameId;
   const sessionId = params.sessionId;
   const { getters } = useContext(Context);
-  const [quizResults, setQuizResults] = useState();
   const [quizProgress, setQuizProgress] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [active, setActive] = useState(true);
@@ -29,7 +28,7 @@ const gameResultsPage = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       {
         active
           ? <GameController
@@ -39,9 +38,9 @@ const gameResultsPage = () => {
               quizProgress={quizProgress}
               totalQuestions={totalQuestions}
           />
-          : <Results/>
+          : <AdminResults/>
       }
-    </>
+    </Container>
   );
 };
 

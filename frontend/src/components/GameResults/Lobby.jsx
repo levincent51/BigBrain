@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import { useContext, Context } from '../../context';
 import { useParams } from 'react-router-dom';
@@ -25,7 +24,6 @@ const gamePage = ({ quizId }) => {
   useEffect(() => {
     return () => {
       audio.pause()
-      console.log("in cleanup")
     }
   }, [])
 

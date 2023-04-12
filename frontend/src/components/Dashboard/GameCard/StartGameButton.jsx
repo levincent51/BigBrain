@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import fetchAPI from '../../../utilities/fetch';
 import { fetchSessionId } from '../../../utilities/helpers';
+import { green } from '@mui/material/colors';
 
 const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessionId, setSessionId }) => {
   const { getters } = useContext(Context);
@@ -48,7 +49,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
             variant="contained"
             endIcon={<PlayCircleOutlineIcon/>}
             {...bindTrigger(popupState)}
-            sx={{ backgroundColor: 'green', width: '90%', height: '24px', position: 'absolute', bottom: '5%', left: '5%', fontSize: '11px' }}
+            sx={{ backgroundColor: green[600], width: '90%', height: '24px', position: 'absolute', bottom: '5%', left: '5%', fontSize: '11px' }}
           >
             {'Start Quiz'}
           </Button>

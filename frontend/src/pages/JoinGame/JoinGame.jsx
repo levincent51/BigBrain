@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
