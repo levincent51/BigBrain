@@ -1,44 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Context, useContext } from '../../context';
-import fetchAPI from '../../utilities/fetch';
-import EditGameForm from '../../components/EditGame/EditGameForm';
-import { Container, Paper, Box } from '@mui/material';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Context, useContext } from '../../context'
+import fetchAPI from '../../utilities/fetch'
+import EditGameForm from '../../components/EditGame/EditGameForm'
+import { Container, Paper, Box } from '@mui/material'
 
 const EditGame = () => {
-  const navigate = useNavigate();
-  const { getters } = useContext(Context);
-  const { gameId } = useParams();
-  const initialValues = { name: '', questions: [], thumbnail: '' };
-  const [quizInfo, setQuizInfo] = useState(initialValues);
-  const [savedInfo, setSavedInfo] = useState(initialValues);
+  const navigate = useNavigate()
+  const { getters } = useContext(Context)
+  const { gameId } = useParams()
+  const initialValues = { name: '', questions: [], thumbnail: '' }
+  const [quizInfo, setQuizInfo] = useState(initialValues)
+  const [savedInfo, setSavedInfo] = useState(initialValues)
 
   const fetchQuizData = async () => {
     const res = await fetchAPI('GET', getters.token, `admin/quiz/${gameId}`)
-    console.log(res);
-    if (res.error) alert(res.error);
+    console.log(res)
+    if (res.error) alert(res.error)
     else {
-      setSavedInfo(res);
-      setQuizInfo(res);
+      setSavedInfo(res)
+      setQuizInfo(res)
     }
   }
 
   useEffect(() => {
-    fetchQuizData();
-  }, []);
+    fetchQuizData()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const res = await fetchAPI('PUT', getters.token, `admin/quiz/${gameId}`, quizInfo)
-    if (res.error) alert(res.error);
+    if (res.error) alert(res.error)
     else {
-      alert('saved changes');
-      fetchQuizData();
+      alert('saved changes')
+      fetchQuizData()
     }
   }
 
   const navigateToQuestion = (id) => {
-    navigate(`/editgame/${gameId}/${id}`);
+    navigate(`/editgame/${gameId}/${id}`)
   }
 
   return (
@@ -59,7 +59,7 @@ const EditGame = () => {
         </Paper>
       </Box>
     </Container>
-  );
+  )
 }
 
-export default EditGame;
+export default EditGame

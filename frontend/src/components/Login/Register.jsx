@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import fetchAPI from '../../utilities/fetch';
-import { useContext, Context } from '../../context';
-import { registerValidator } from '../../utilities/loginValidators';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import fetchAPI from '../../utilities/fetch'
+import { useContext, Context } from '../../context'
+import { registerValidator } from '../../utilities/loginValidators'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 const Register = (props) => {
-  const { setters } = useContext(Context);
-  const navigate = useNavigate();
+  const { setters } = useContext(Context)
+  const navigate = useNavigate()
 
-  const initialValues = { name: '', email: '', password: '', confirm: '' };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
+  const initialValues = { name: '', email: '', password: '', confirm: '' }
+  const [formValues, setFormValues] = useState(initialValues)
+  const [formErrors, setFormErrors] = useState({})
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
+  }
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    setFormErrors(registerValidator(formValues));
+    setFormErrors(registerValidator(formValues))
     if (!Object.keys(registerValidator(formValues)).length) {
-      const { confirm, ...filtered } = formValues;
+      const { confirm, ...filtered } = formValues
       const res = await fetchAPI('POST', null, 'admin/auth/register', filtered)
-      if (res.error) setFormErrors({ input: res.error });
+      if (res.error) setFormErrors({ input: res.error })
       else {
-        setters.setToken(res.token);
-        localStorage.setItem('token', res.token);
-        navigate('/');
+        setters.setToken(res.token)
+        localStorage.setItem('token', res.token)
+        navigate('/')
       }
     }
   }
@@ -99,7 +99,7 @@ const Register = (props) => {
         Register
       </Button>
     </Box>
-  );
+  )
 }
 
-export default Register;
+export default Register

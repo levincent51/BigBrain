@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import fetchAPI from '../../utilities/fetch';
+import React, { useState, useEffect } from 'react'
+import fetchAPI from '../../utilities/fetch'
 import {
   Card,
   Box,
@@ -10,35 +10,35 @@ import {
   FormControlLabel,
   Checkbox,
   CircularProgress,
-} from '@mui/material';
-import TimerIcon from '@mui/icons-material/Timer';
+} from '@mui/material'
+import TimerIcon from '@mui/icons-material/Timer'
 
 const Question = ({ playerId, question, answer, timeLeft }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([])
   const handleOptionChange = (optionIndex) => {
     if (question.multipleChoice) {
       // If multiple options can be selected, toggle the selected option
       const newSelectedOptions = selectedOptions.includes(optionIndex)
         ? selectedOptions.filter((index) => index !== optionIndex)
-        : [...selectedOptions, optionIndex];
-      setSelectedOptions(newSelectedOptions);
-      sendAnswer({ answerIds: newSelectedOptions });
-      console.log(newSelectedOptions);
+        : [...selectedOptions, optionIndex]
+      setSelectedOptions(newSelectedOptions)
+      sendAnswer({ answerIds: newSelectedOptions })
+      console.log(newSelectedOptions)
     } else {
       // If only one option can be selected, deselect all other options and select the clicked option
-      setSelectedOptions([optionIndex]);
-      sendAnswer({ answerIds: [optionIndex] });
-      console.log({ answerIds: [optionIndex] });
+      setSelectedOptions([optionIndex])
+      sendAnswer({ answerIds: [optionIndex] })
+      console.log({ answerIds: [optionIndex] })
     }
-  };
+  }
 
   useEffect(() => {
-    setSelectedOptions([]);
-  }, [answer]);
+    setSelectedOptions([])
+  }, [answer])
 
   const sendAnswer = async (body) => {
-    const res = await fetchAPI('PUT', null, `play/${playerId}/answer`, body);
-    if (res.error) alert(res.error);
+    const res = await fetchAPI('PUT', null, `play/${playerId}/answer`, body)
+    if (res.error) alert(res.error)
   }
 
   return (
@@ -87,7 +87,7 @@ const Question = ({ playerId, question, answer, timeLeft }) => {
         </div>
       </Card>
       : <CircularProgress />
-  );
-};
+  )
+}
 
-export default Question;
+export default Question

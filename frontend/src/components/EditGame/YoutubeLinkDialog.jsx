@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+import React, { useState } from 'react'
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material'
 
 const YoutubeLinkDialog = ({ open, onClose, questionInfo, setQuestionInfo }) => {
-  const [link, setLink] = useState('');
+  const [link, setLink] = useState('')
 
   const handleLinkChange = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const text = event.clipboardData.getData('text/plain');
-    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    const match = text.match(regExp);
+    const text = event.clipboardData.getData('text/plain')
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
+    const match = text.match(regExp)
     if (match) {
-      const videoId = match[7];
-      setLink(`https://www.youtube.com/embed/${videoId}`);
+      const videoId = match[7]
+      setLink(`https://www.youtube.com/embed/${videoId}`)
     } else {
-      alert('Invalid youtube link, please ensure you copy a valid youtube link');
+      alert('Invalid youtube link, please ensure you copy a valid youtube link')
     }
-  };
+  }
 
   const handleCancel = () => {
-    setLink('');
-    onClose();
-  };
+    setLink('')
+    onClose()
+  }
 
   const handleSave = () => {
-    setQuestionInfo({ ...questionInfo, url: link });
+    setQuestionInfo({ ...questionInfo, url: link })
     // handle the link here
-    console.log(link);
-    setLink('');
-    onClose();
-  };
+    console.log(link)
+    setLink('')
+    onClose()
+  }
 
   return (
     <Dialog maxWidth='lg' PaperProps={{ style: { minWidth: '60vh', maxWidth: '90vh' } }} open={open} onClose={handleCancel}>
@@ -56,6 +56,6 @@ const YoutubeLinkDialog = ({ open, onClose, questionInfo, setQuestionInfo }) => 
         </Button>
       </DialogActions>
     </Dialog>
-  );
+  )
 }
-export default YoutubeLinkDialog;
+export default YoutubeLinkDialog

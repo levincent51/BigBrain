@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Context, initialValues } from './context';
-import Dashboard from './pages/Dashboard/Dashboard';
-import Welcome from './pages/LoginPage/Welcome';
-import LoginPage from './pages/LoginPage/LoginPage';
-import Navbar from './components/Navbar/Navbar';
-import EditGame from './pages/EditGame/EditGame';
-import GamePage from './pages/Game/GamePage';
-import EditGameQuestion from './pages/EditGame/EditGameQuestion';
-import GameResultPage from './pages/Game/GameResultPage';
-import JoinGame from './pages/JoinGame/JoinGame';
+import React, { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Context, initialValues } from './context'
+import Dashboard from './pages/Dashboard/Dashboard'
+import Welcome from './pages/LoginPage/Welcome'
+import LoginPage from './pages/LoginPage/LoginPage'
+import Navbar from './components/Navbar/Navbar'
+import EditGame from './pages/EditGame/EditGame'
+import GamePage from './pages/Game/GamePage'
+import EditGameQuestion from './pages/EditGame/EditGameQuestion'
+import GameResultPage from './pages/Game/GameResultPage'
+import JoinGame from './pages/JoinGame/JoinGame'
 
 function App () {
-  const [token, setToken] = useState(initialValues.token);
+  const [token, setToken] = useState(initialValues.token)
   const getters = {
     token
-  };
+  }
   const setters = {
     setToken
   }
@@ -57,7 +57,7 @@ function App () {
         </Routes>
       </BrowserRouter>
     </Context.Provider>
-  );
+  )
 }
 
-export default App;
+export default App

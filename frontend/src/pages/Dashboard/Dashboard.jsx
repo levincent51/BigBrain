@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { useContext, Context } from '../../context';
-import fetchAPI from '../../utilities/fetch';
-import GamesCard from '../../components/Dashboard/GameCard/GameCard';
-import PastGameCard from '../../components/Dashboard/GameCard/PastGameCard';
-import Grid2 from '@mui/material/Unstable_Grid2';
+import React, { useState, useEffect } from 'react'
+import { useContext, Context } from '../../context'
+import fetchAPI from '../../utilities/fetch'
+import GamesCard from '../../components/Dashboard/GameCard/GameCard'
+import PastGameCard from '../../components/Dashboard/GameCard/PastGameCard'
+import Grid2 from '@mui/material/Unstable_Grid2'
 import CreateGameCard from '../../components/Dashboard/CreateGameCard/CreateGameCard'
-import Container from '@mui/material/Container';
+import Container from '@mui/material/Container'
 
 const Dashboard = () => {
-  const { getters } = useContext(Context);
-  const [quizList, setQuizList] = useState([]);
-  const [oldSessions, setOldSessions] = useState([]);
+  const { getters } = useContext(Context)
+  const [quizList, setQuizList] = useState([])
+  const [oldSessions, setOldSessions] = useState([])
 
   const fetchAllQuizzes = async () => {
     await fetchAPI('GET', getters.token, 'admin/quiz').then((res) => {
-      if (res.error) alert(res.error);
+      if (res.error) alert(res.error)
       else {
-        setQuizList(res.quizzes);
-        processOldSessionList(quizList);
-        return res.quizzes;
+        setQuizList(res.quizzes)
+        processOldSessionList(quizList)
+        return res.quizzes
       }
     }).then(processOldSessionList)
   }
 
   const processOldSessionList = async (quizList) => {
-    const seshList = [];
+    const seshList = []
     quizList.forEach(q => {
-      console.log(q);
+      console.log(q)
       q.oldSessions.forEach(s => {
-        const sessionQuizCombined = { ...q, sessionId: s };
-        seshList.push(sessionQuizCombined);
+        const sessionQuizCombined = { ...q, sessionId: s }
+        seshList.push(sessionQuizCombined)
       })
     })
-    setOldSessions(seshList);
+    setOldSessions(seshList)
   }
 
   useEffect(async () => {
-    fetchAllQuizzes();
-  }, []);
+    fetchAllQuizzes()
+  }, [])
 
   const quizzes = quizList.map((quiz) => (
     <Grid2 key={quiz.id}>
@@ -65,7 +65,7 @@ const Dashboard = () => {
         {pastQuizzes}
       </Grid2>
     </Container>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

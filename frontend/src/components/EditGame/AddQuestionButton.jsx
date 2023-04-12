@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 // import AddCircleIcon from '@material-ui/icons/AddCircle';
-import AddIcon from '@mui/icons-material/Add';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add'
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material'
 
 function AddQuestionButton ({ quizInfo, setQuizInfo }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [newQuestion, setNewQuestion] = useState('');
+  const [modalOpen, setModalOpen] = useState(false)
+  const [newQuestion, setNewQuestion] = useState('')
 
   const handleQuestionChange = (event) => {
-    setNewQuestion(event.target.value);
-  };
+    setNewQuestion(event.target.value)
+  }
 
   const handleAddQuestion = () => {
-    setModalOpen(true);
-  };
+    setModalOpen(true)
+  }
 
   const handleSaveQuestion = () => {
-    const id = quizInfo.questions?.length !== 0 ? quizInfo.questions[quizInfo.questions.length - 1].id + 1 : 1;
-    const updatedQuestions = [...quizInfo.questions, { id, question: newQuestion, score: 1, timeLimit: 10 }];
-    setQuizInfo({ ...quizInfo, questions: updatedQuestions });
+    const id = quizInfo.questions?.length !== 0 ? quizInfo.questions[quizInfo.questions.length - 1].id + 1 : 1
+    const updatedQuestions = [...quizInfo.questions, { id, question: newQuestion, score: 1, timeLimit: 10 }]
+    setQuizInfo({ ...quizInfo, questions: updatedQuestions })
 
-    setModalOpen(false);
-    setNewQuestion('');
-  };
+    setModalOpen(false)
+    setNewQuestion('')
+  }
 
   return (
     <>
@@ -57,7 +57,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
         </DialogActions>
       </Dialog>
     </>
-  );
+  )
 }
 
-export default AddQuestionButton;
+export default AddQuestionButton

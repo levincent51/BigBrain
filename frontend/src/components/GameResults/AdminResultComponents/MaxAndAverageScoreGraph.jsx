@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   ComposedChart,
   Bar,
@@ -7,14 +7,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  Scatter,
-  Label
-} from 'recharts';
-import Container from '@mui/material/Container';
+  Scatter
+} from 'recharts'
+import Container from '@mui/material/Container'
 
 const MaxAndAverageScoreGraph = ({ data, numPlayers }) => {
   data.forEach(d => {
-    d.avg = d.totalPoints / numPlayers;
+    d.avg = d.totalPoints / numPlayers
   })
   return (
     <Container>
@@ -48,7 +47,7 @@ const MaxAndAverageScoreGraph = ({ data, numPlayers }) => {
           <Scatter dataKey="avg" fill="red" />
       </ComposedChart>
     </Container>
-  );
+  )
 }
 
-export default MaxAndAverageScoreGraph;
+export default MaxAndAverageScoreGraph

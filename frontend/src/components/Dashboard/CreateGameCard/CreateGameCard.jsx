@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { useContext, Context } from '../../../context';
-import fetchAPI from '../../../utilities/fetch';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import startGame from './startGame.jpg';
-import CardActions from '@mui/material/CardActions';
-import AddIcon from '@mui/icons-material/Add';
-import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
+import React, { useState } from 'react'
+import { useContext, Context } from '../../../context'
+import fetchAPI from '../../../utilities/fetch'
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
+import startGame from './startGame.jpg'
+import CardActions from '@mui/material/CardActions'
+import AddIcon from '@mui/icons-material/Add'
+import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
+import InputBase from '@mui/material/InputBase'
+import Divider from '@mui/material/Divider'
 
 const CreateGameCard = ({ fetchAllQuizzes }) => {
-  const { getters } = useContext(Context);
-  const [newGameName, setNewGameName] = useState('');
+  const { getters } = useContext(Context)
+  const [newGameName, setNewGameName] = useState('')
 
   const createPost = async () => {
     const res = await fetchAPI('POST', getters.token, 'admin/quiz/new', {
       name: newGameName
     })
-    if (res.error) console.log(res.error);
-    await fetchAllQuizzes();
+    if (res.error) console.log(res.error)
+    await fetchAllQuizzes()
   }
 
   return (
@@ -49,7 +49,7 @@ const CreateGameCard = ({ fetchAllQuizzes }) => {
         </Paper>
       </CardActions>
     </Card>
-  );
-};
+  )
+}
 
-export default CreateGameCard;
+export default CreateGameCard

@@ -23,7 +23,7 @@
     "rules": {
         "linebreak-style": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-        "semi": 0,
+        "semi": 2,
         "comma-dangle": 0,
         "react/prop-types": 0
     },

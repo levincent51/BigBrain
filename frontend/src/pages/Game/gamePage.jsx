@@ -1,25 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { useContext, Context } from '../../context';
-import fetchAPI from '../../utilities/fetch';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useContext, Context } from '../../context'
+import fetchAPI from '../../utilities/fetch'
+import { useParams, useNavigate } from 'react-router-dom'
 // import { playerGetStatus } from '../../utilities/helpers';
-import Container from '@mui/material/Container';
-import Lobby from '../../components/GameResults/Lobby';
-import PlayGame from '../../components/PlayGame/PlayGame';
+import Container from '@mui/material/Container'
+import Lobby from '../../components/GameResults/Lobby'
+import PlayGame from '../../components/PlayGame/PlayGame'
 
 const GamePage = () => {
-  const params = useParams();
-  const playerId = params.playerId;
-  const [quizStatus, setQuizStatus] = useState('pending');
-  const [question, setQuestion] = useState({ id: -1, question: '', url: '', multipleChoice: false, score: 0, options: [], timeLimit: 99 });
-  const [answer, setAnswer] = useState(null);
+  const params = useParams()
+  const playerId = params.playerId
+  const [quizStatus, setQuizStatus] = useState('pending')
+  const [question, setQuestion] = useState({ id: -1, question: '', url: '', multipleChoice: false, score: 0, options: [], timeLimit: 99 })
+  const [answer, setAnswer] = useState(null)
 
   const fetchQuizResult = async () => {
     const res = await fetchAPI('GET', null, `play/${playerId}/results`)
     if (res.error) alert(res.error)
     else {
-      console.log(res);
+      console.log(res)
       // TODO THIS IS AN EXAMPLE STRUCTURE OF RES
       // [
       //   {
@@ -38,17 +38,17 @@ const GamePage = () => {
     const intervalId = setInterval(async () => {
       const res = await fetchAPI('GET', null, `play/${playerId}/status`)
       if (res.error) {
-        clearInterval(intervalId);
-        setQuizStatus('ended');
-        fetchQuizResult();
-        console.log('ENDED!!');
+        clearInterval(intervalId)
+        setQuizStatus('ended')
+        fetchQuizResult()
+        console.log('ENDED!!')
       } else if (res.started) {
-        setQuizStatus('started');
+        setQuizStatus('started')
       }
-    }, 1000);
+    }, 1000)
 
-    return () => clearInterval(intervalId);
-  }, [playerId]);
+    return () => clearInterval(intervalId)
+  }, [playerId])
 
   // THIS IS FOR POLLIN QUESTIOn
 
@@ -59,6 +59,6 @@ const GamePage = () => {
       {quizStatus === 'ended' && <p>The game has ended.</p>}
     </Container>
   )
-};
+}
 
-export default GamePage;
+export default GamePage

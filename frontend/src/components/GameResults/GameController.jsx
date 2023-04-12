@@ -1,17 +1,17 @@
-import React from 'react';
-import { useContext, Context } from '../../context';
-import BackButton from '../BackButton/BackButton';
-import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import StopIcon from '@mui/icons-material/Stop';
-import { red, blue } from '@mui/material/colors';
-import CircularProgress from '@mui/material/CircularProgress';
-import { endGame, advanceGame } from '../../utilities/helpers';
-import Box from '@mui/material/Box';
+import React from 'react'
+import { useContext, Context } from '../../context'
+import BackButton from '../BackButton/BackButton'
+import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
+import InputBase from '@mui/material/InputBase'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import StopIcon from '@mui/icons-material/Stop'
+import { red, blue } from '@mui/material/colors'
+import CircularProgress from '@mui/material/CircularProgress'
+import { endGame, advanceGame } from '../../utilities/helpers'
+import Box from '@mui/material/Box'
 
 const CircularProgressWithLabel = ({ currentQuestion, totalQuestions }) => {
   return (
@@ -34,20 +34,20 @@ const CircularProgressWithLabel = ({ currentQuestion, totalQuestions }) => {
         </Typography>
       </Box>
     </Box>
-  );
+  )
 }
 
 const GameController = ({ quizId, sessionId, loadGameStatus, quizProgress, totalQuestions }) => {
-  const { getters } = useContext(Context);
+  const { getters } = useContext(Context)
 
   const endGameUpdateUi = async () => {
-    await endGame(quizId, getters.token);
-    await loadGameStatus();
+    await endGame(quizId, getters.token)
+    await loadGameStatus()
   }
 
   const advanceGameUpdateUi = async () => {
-    await advanceGame(quizId, getters.token);
-    await loadGameStatus();
+    await advanceGame(quizId, getters.token)
+    await loadGameStatus()
   }
 
   return (
@@ -97,4 +97,4 @@ const GameController = ({ quizId, sessionId, loadGameStatus, quizProgress, total
   )
 }
 
-export default GameController;
+export default GameController

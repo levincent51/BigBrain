@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
-import { useContext, Context } from '../../../context';
-import Button from '@mui/material/Button';
-import StopIcon from '@mui/icons-material/Stop';
-import Popover from '@mui/material/Popover';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import Paper from '@mui/material/Paper';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { useNavigate } from 'react-router-dom';
-import { endGame } from '../../../utilities/helpers';
-import PreviewIcon from '@mui/icons-material/Preview';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+import React, { useState } from 'react'
+import { useContext, Context } from '../../../context'
+import Button from '@mui/material/Button'
+import StopIcon from '@mui/icons-material/Stop'
+import Popover from '@mui/material/Popover'
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+import Paper from '@mui/material/Paper'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import { useNavigate } from 'react-router-dom'
+import { endGame } from '../../../utilities/helpers'
+import PreviewIcon from '@mui/icons-material/Preview'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
 
 const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessionId }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { getters } = useContext(Context);
-  const [hasClickedOnButton, setHasClickedOnButton] = useState(false);
-  const [sesId, setSesId] = useState(sessionId);
+  const { getters } = useContext(Context)
+  const [hasClickedOnButton, setHasClickedOnButton] = useState(false)
+  const [sesId, setSesId] = useState(sessionId)
 
   const stopGame = async () => {
     if (hasClickedOnButton) {
-      setIsActive(false);
+      setIsActive(false)
     }
     if (isActive && !hasClickedOnButton) {
-      setHasClickedOnButton(true);
-      setSesId(sessionId);
-      await endGame(quizId, getters.token);
-      await fetchAllQuizzes();
+      setHasClickedOnButton(true)
+      setSesId(sessionId)
+      await endGame(quizId, getters.token)
+      await fetchAllQuizzes()
     }
   }
 
   const viewResults = () => {
-    navigate(`/game/result/${quizId}/${sesId}`);
+    navigate(`/game/result/${quizId}/${sesId}`)
   }
 
   return (
@@ -89,7 +89,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
         <PreviewIcon />
       </IconButton >
     </Box>
-  );
+  )
 }
 
-export default StartGameButton;
+export default StartGameButton

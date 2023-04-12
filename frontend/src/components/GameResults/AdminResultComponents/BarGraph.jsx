@@ -1,19 +1,6 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import Container from '@mui/material/Container';
-
-const data = [
-  {
-    name: 'Question 1',
-    numCorrect: 2400,
-    amt: 2100
-  },
-  {
-    name: 'Question 2',
-    numCorrect: 1398,
-    amt: 2100
-  },
-];
+import React from 'react'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import Container from '@mui/material/Container'
 
 const BarGraph = ({ data }) => {
   return (
@@ -43,7 +30,7 @@ const BarGraph = ({ data }) => {
         <Bar dataKey="numCorrect" fill="#8884d8" background={{ fill: '#eee' }} />
       </BarChart>
     </Container>
-  );
+  )
 }
 
-export default BarGraph;
+export default BarGraph

@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
+import React, { useState } from 'react'
+import AddCircleIcon from '@material-ui/icons/AddCircle'
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material'
 
 function AddItemDialog ({ limit, current, handleSave, itemName }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [newItem, setNewItem] = useState('');
+  const [modalOpen, setModalOpen] = useState(false)
+  const [newItem, setNewItem] = useState('')
 
   const handleItemChange = (event) => {
-    setNewItem(event.target.value);
-  };
+    setNewItem(event.target.value)
+  }
 
   const handleAddItem = () => {
-    setModalOpen(true);
-  };
+    setModalOpen(true)
+  }
 
   const handleSaveItem = () => {
-    handleSave(newItem);
-    setModalOpen(false);
-    setNewItem('');
-  };
+    handleSave(newItem)
+    setModalOpen(false)
+    setNewItem('')
+  }
 
   return (
     <>
@@ -54,7 +54,7 @@ function AddItemDialog ({ limit, current, handleSave, itemName }) {
         </DialogActions>
       </Dialog>
     </>
-  );
+  )
 }
 
-export default AddItemDialog;
+export default AddItemDialog

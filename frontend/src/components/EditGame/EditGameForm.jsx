@@ -1,44 +1,44 @@
-import React from 'react';
-import brainlogo from '../../components/Dashboard/GameCard/brainlogo.jpg';
-import AddQuestionButton from '../../components/EditGame/AddQuestionButton';
-import BackButton from '../BackButton/BackButton';
+import React from 'react'
+import brainlogo from '../../components/Dashboard/GameCard/brainlogo.jpg'
+import AddQuestionButton from '../../components/EditGame/AddQuestionButton'
+import BackButton from '../BackButton/BackButton'
 
-import Box from '@mui/material/Box';
-import CardMedia from '@mui/material/CardMedia';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Grid, IconButton } from '@mui/material';
-import Delete from '@mui/icons-material/Delete';
-import ImageIcon from '@mui/icons-material/Image';
-import Edit from '@mui/icons-material/Edit';
+import Box from '@mui/material/Box'
+import CardMedia from '@mui/material/CardMedia'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import { Grid, IconButton } from '@mui/material'
+import Delete from '@mui/icons-material/Delete'
+import ImageIcon from '@mui/icons-material/Image'
+import Edit from '@mui/icons-material/Edit'
 
 const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigateToQuestion }) => {
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+    const file = event.target.files[0]
+    const reader = new FileReader()
     reader.onloadend = () => {
-      setQuizInfo({ ...quizInfo, thumbnail: reader.result });
-    };
-    reader.readAsDataURL(file);
-  };
+      setQuizInfo({ ...quizInfo, thumbnail: reader.result })
+    }
+    reader.readAsDataURL(file)
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setQuizInfo({ ...quizInfo, [name]: value });
+    const { name, value } = e.target
+    setQuizInfo({ ...quizInfo, [name]: value })
   }
 
   const handleDeleteQuestion = (index) => {
-    const updatedQuestions = [...quizInfo.questions];
-    updatedQuestions.splice(index, 1);
-    setQuizInfo({ ...quizInfo, questions: updatedQuestions });
-  };
+    const updatedQuestions = [...quizInfo.questions]
+    updatedQuestions.splice(index, 1)
+    setQuizInfo({ ...quizInfo, questions: updatedQuestions })
+  }
 
   const disabledEdit = (id) => {
-    console.log(id);
-    const ob = savedInfo.questions?.find(x => x.id === id);
-    if (ob) return false;
-    else return true;
+    console.log(id)
+    const ob = savedInfo.questions?.find(x => x.id === id)
+    if (ob) return false
+    else return true
   }
 
   return (
@@ -125,7 +125,7 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
         </Button>
       </Box>
     </form>
-  );
+  )
 }
 
-export default EditGameForm;
+export default EditGameForm

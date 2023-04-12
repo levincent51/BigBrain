@@ -1,70 +1,70 @@
-import React from 'react';
-import YoutubeLinkDialog from './YoutubeLinkDialog';
-import BackButton from '../BackButton/BackButton';
-import AddItemDialog from '../AddItemDialog/AddItemDialog';
+import React from 'react'
+import YoutubeLinkDialog from './YoutubeLinkDialog'
+import BackButton from '../BackButton/BackButton'
+import AddItemDialog from '../AddItemDialog/AddItemDialog'
 
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Delete from '@mui/icons-material/Delete';
-import ImageIcon from '@mui/icons-material/Image';
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
-import ClearIcon from '@mui/icons-material/Clear';
-import IconButton from '@mui/material/IconButton';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import Radio from '@mui/material/Radio';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import ToggleButton from '@mui/material/ToggleButton';
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Delete from '@mui/icons-material/Delete'
+import ImageIcon from '@mui/icons-material/Image'
+import InsertLinkIcon from '@mui/icons-material/InsertLink'
+import ClearIcon from '@mui/icons-material/Clear'
+import IconButton from '@mui/material/IconButton'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import Checkbox from '@mui/material/Checkbox'
+import Radio from '@mui/material/Radio'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
+import ToggleButton from '@mui/material/ToggleButton'
 
 const EditQuestionForm = (props) => {
-  const { questionInfo, setQuestionInfo, handleSubmit, youtubeOpen, setYoutubeOpen } = props;
-  const gameId = window.location.href.split('/').slice(-2)[0];
+  const { questionInfo, setQuestionInfo, handleSubmit, youtubeOpen, setYoutubeOpen } = props
+  const gameId = window.location.href.split('/').slice(-2)[0]
 
   const handleButtonClick = () => {
-    setYoutubeOpen(true);
-  };
+    setYoutubeOpen(true)
+  }
 
   const handleCloseDialog = () => {
-    setYoutubeOpen(false);
-  };
+    setYoutubeOpen(false)
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setQuestionInfo({ ...questionInfo, [name]: value });
+    const { name, value } = e.target
+    setQuestionInfo({ ...questionInfo, [name]: value })
   }
 
   const handleNumChange = (e) => {
-    const { name, value } = e.target;
-    setQuestionInfo({ ...questionInfo, [name]: parseInt(value) });
+    const { name, value } = e.target
+    setQuestionInfo({ ...questionInfo, [name]: parseInt(value) })
   }
 
   const handleOptionChange = (e, index) => {
-    const { value } = e.target;
-    const updatedOptions = [...questionInfo.options];
-    updatedOptions[index].name = value;
-    setQuestionInfo({ ...questionInfo, options: updatedOptions });
+    const { value } = e.target
+    const updatedOptions = [...questionInfo.options]
+    updatedOptions[index].name = value
+    setQuestionInfo({ ...questionInfo, options: updatedOptions })
   }
 
   const handleOptionSave = (option) => {
-    const updatedOptions = [...questionInfo.options, { name: option, correct: false }];
-    setQuestionInfo({ ...questionInfo, options: updatedOptions });
+    const updatedOptions = [...questionInfo.options, { name: option, correct: false }]
+    setQuestionInfo({ ...questionInfo, options: updatedOptions })
   }
 
   const handleClearURL = (e) => {
-    setQuestionInfo({ ...questionInfo, url: '' });
+    setQuestionInfo({ ...questionInfo, url: '' })
   }
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+    const file = event.target.files[0]
+    const reader = new FileReader()
     reader.onloadend = () => {
-      setQuestionInfo({ ...questionInfo, url: reader.result });
-    };
+      setQuestionInfo({ ...questionInfo, url: reader.result })
+    }
 
-    reader.readAsDataURL(file);
-  };
+    reader.readAsDataURL(file)
+  }
 
   const handleQuestionType = (value) => {
     if (value === 'multipleChoice') setQuestionInfo({ ...questionInfo, multipleChoice: true })
@@ -72,31 +72,31 @@ const EditQuestionForm = (props) => {
       const updatedOptions = questionInfo.options.map((option) => ({
         ...option,
         correct: false
-      }));
-      setQuestionInfo({ ...questionInfo, multipleChoice: false, options: updatedOptions });
+      }))
+      setQuestionInfo({ ...questionInfo, multipleChoice: false, options: updatedOptions })
     }
   }
 
   const handleCheck = (index) => {
-    const updatedOptions = [...questionInfo.options];
-    updatedOptions[index].correct = !updatedOptions[index]?.correct;
-    setQuestionInfo({ ...questionInfo, options: updatedOptions });
+    const updatedOptions = [...questionInfo.options]
+    updatedOptions[index].correct = !updatedOptions[index]?.correct
+    setQuestionInfo({ ...questionInfo, options: updatedOptions })
   }
 
   const handleRadio = (name, index) => {
     const updatedOptions = questionInfo.options.map((option) => ({
       ...option,
       correct: false
-    }));
-    updatedOptions[index].correct = true;
-    setQuestionInfo({ ...questionInfo, options: updatedOptions });
+    }))
+    updatedOptions[index].correct = true
+    setQuestionInfo({ ...questionInfo, options: updatedOptions })
   }
 
   const handleDeleteOptions = (index) => {
-    const updatedOptions = [...questionInfo.options];
-    updatedOptions.splice(index, 1);
-    setQuestionInfo({ ...questionInfo, options: updatedOptions });
-  };
+    const updatedOptions = [...questionInfo.options]
+    updatedOptions.splice(index, 1)
+    setQuestionInfo({ ...questionInfo, options: updatedOptions })
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -251,7 +251,7 @@ const EditQuestionForm = (props) => {
         </Button>
       </Box>
     </form>
-  );
+  )
 }
 
-export default EditQuestionForm;
+export default EditQuestionForm

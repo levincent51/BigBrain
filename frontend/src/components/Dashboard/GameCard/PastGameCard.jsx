@@ -1,43 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useContext, Context } from '../../../context';
-import fetchAPI from '../../../utilities/fetch';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+/* eslint-disable no-unused-vars */
+import React from 'react'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
 import brainLogo from './brainlogo.jpg'
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Chip from '@mui/material/Chip';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import StopIcon from '@mui/icons-material/Stop';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import { blue } from '@mui/material/colors';
+import CardActions from '@mui/material/CardActions'
+import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
+import StopIcon from '@mui/icons-material/Stop'
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+import { blue } from '@mui/material/colors'
 
-const Games = ({ quiz, fetchAllQuizzes }) => {
-  const navigate = useNavigate();
-
-  const { getters } = useContext(Context);
-  const [sessionId, setSessionId] = useState('');
-
-  const fetchQuizData = async (quiz) => {
-    const res = await fetchAPI('GET', getters?.token, `admin/quiz/${quiz.id}`)
-    if (res.error) alert(res.error);
-    else {
-      setSessionId(quiz.sessionId);
-    }
-  }
-
-  useEffect(async () => {
-    console.log(quiz);
-    await fetchQuizData(quiz);
-  }, []);
+const Games = ({ quiz }) => {
+  const navigate = useNavigate()
 
   const viewResults = () => {
-    navigate(`/game/result/${quiz.id}/${quiz.sessionId}`);
+    navigate(`/game/result/${quiz.id}/${quiz.sessionId}`)
   }
 
   return (
@@ -67,7 +46,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
         </Button>
       </CardActions>
     </Card>
-  );
-};
+  )
+}
 
-export default Games;
+export default Games

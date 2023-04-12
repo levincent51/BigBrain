@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import StarIcon from '@mui/icons-material/Star';
+import React, { useEffect } from 'react'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import StarIcon from '@mui/icons-material/Star'
 
 const LeaderBoard = ({ userPerformance }) => {
   const sortedUserPerformance = Object
@@ -14,9 +13,9 @@ const LeaderBoard = ({ userPerformance }) => {
         ? 1
         : b.points < a.points
           ? -1
-          : 0;
+          : 0
     })
-    .slice(0, 5);
+    .slice(0, 5)
 
   const leaderBoard = sortedUserPerformance
     .map((userStats) => {
@@ -33,7 +32,7 @@ const LeaderBoard = ({ userPerformance }) => {
 
   useEffect(() => {
     console.log(userPerformance)
-  }, [userPerformance]);
+  }, [userPerformance])
 
   return (
     <List
@@ -43,7 +42,7 @@ const LeaderBoard = ({ userPerformance }) => {
       <h2>LeaderBoard</h2>
       {leaderBoard}
     </List>
-  );
+  )
 }
 
-export default LeaderBoard;
+export default LeaderBoard

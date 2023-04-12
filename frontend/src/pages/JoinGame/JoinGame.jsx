@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { joinSession } from '../../utilities/helpers';
-import Container from '@mui/material/Container';
+import React, { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import Paper from '@mui/material/Paper'
+import InputBase from '@mui/material/InputBase'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import { joinSession } from '../../utilities/helpers'
+import Container from '@mui/material/Container'
 
 const JoinGame = () => {
-  const params = useParams();
-  const sessionId = params.sessionId;
-  const navigate = useNavigate();
-  const [playerName, setPlayerName] = useState('');
+  const params = useParams()
+  const sessionId = params.sessionId
+  const navigate = useNavigate()
+  const [playerName, setPlayerName] = useState('')
 
   const joinAndRedirectToGame = async () => {
-    const playerId = await joinSession(sessionId, playerName);
-    navigate(`/game/play/${playerId}`);
+    const playerId = await joinSession(sessionId, playerName)
+    navigate(`/game/play/${playerId}`)
   }
 
   return (
@@ -55,8 +55,8 @@ const JoinGame = () => {
             inputProps={{ 'aria-label': 'Game ID' }}
             placeholder='Your quiz name'
             onChange={(e) => {
-              console.log(e.target.value);
-              setPlayerName(e.target.value);
+              console.log(e.target.value)
+              setPlayerName(e.target.value)
             }}
           />
         </Paper>
@@ -73,4 +73,4 @@ const JoinGame = () => {
   )
 }
 
-export default JoinGame;
+export default JoinGame

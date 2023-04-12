@@ -1,12 +1,12 @@
-import React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import { useNavigate } from 'react-router-dom'
 
 function Welcome () {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <Container>
       <Box
@@ -27,7 +27,7 @@ function Welcome () {
         </Button>
       </Box>
     </Container>
-  );
+  )
 }
 
-export default Welcome;
+export default Welcome

@@ -1,8 +1,6 @@
-import React from 'react';
+import React from 'react'
 import {
   ComposedChart,
-  Line,
-  Area,
   Bar,
   XAxis,
   YAxis,
@@ -10,13 +8,12 @@ import {
   Tooltip,
   Legend,
   Scatter,
-  BarChart
-} from 'recharts';
-import Container from '@mui/material/Container';
+} from 'recharts'
+import Container from '@mui/material/Container'
 
 const ResponseTimeGraph = ({ data, numPlayers }) => {
   data.forEach(d => {
-    d.avgTime = d.totalTime / numPlayers;
+    d.avgTime = d.totalTime / numPlayers
     d.avgCorrectTime = d.correctTotalTime / d.numCorrect
   })
   return (
@@ -48,7 +45,7 @@ const ResponseTimeGraph = ({ data, numPlayers }) => {
           <Scatter dataKey="avgCorrectTime" fill="purple" />
       </ComposedChart>
     </Container>
-  );
+  )
 }
 
-export default ResponseTimeGraph;
+export default ResponseTimeGraph

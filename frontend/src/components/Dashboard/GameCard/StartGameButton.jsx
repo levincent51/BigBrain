@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useContext, Context } from '../../../context';
-import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
-import Popover from '@mui/material/Popover';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import fetchAPI from '../../../utilities/fetch';
-import { fetchSessionId } from '../../../utilities/helpers';
-import { green } from '@mui/material/colors';
+import React, { useState, useEffect } from 'react'
+import { useContext, Context } from '../../../context'
+import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'
+import Popover from '@mui/material/Popover'
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
+import InputBase from '@mui/material/InputBase'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import ContentPasteIcon from '@mui/icons-material/ContentPaste'
+import fetchAPI from '../../../utilities/fetch'
+import { fetchSessionId } from '../../../utilities/helpers'
+import { green } from '@mui/material/colors'
 
 const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessionId, setSessionId }) => {
-  const { getters } = useContext(Context);
-  const [hasClickedOnButton, setHasClickedOnButton] = useState(false);
-  const navigate = useNavigate();
+  const { getters } = useContext(Context)
+  const [hasClickedOnButton, setHasClickedOnButton] = useState(false)
+  const navigate = useNavigate()
 
   const copyToClip = async () => {
     navigator.clipboard.writeText(`localhost:3000/game/join/${sessionId}`)
-    navigate(`/game/result/${quizId}/${sessionId}`);
-  };
+    navigate(`/game/result/${quizId}/${sessionId}`)
+  }
 
   const startGame = async () => {
     if (hasClickedOnButton) {
-      setIsActive(true);
+      setIsActive(true)
     }
 
     if (!isActive && !hasClickedOnButton) {
-      setHasClickedOnButton(true);
+      setHasClickedOnButton(true)
       const res = await fetchAPI('POST', getters.token, `admin/quiz/${quizId}/start`)
-      if (res.error) console.log(res.error);
-      await fetchAllQuizzes();
+      if (res.error) console.log(res.error)
+      await fetchAllQuizzes()
     }
   }
 
@@ -92,7 +92,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
         </div>
       )}
     </PopupState>
-  );
+  )
 }
 
-export default StartGameButton;
+export default StartGameButton
