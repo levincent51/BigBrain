@@ -9,8 +9,7 @@ import MaxAndAverageScoreGraph from './AdminResultComponents/MaxAndAverageScoreG
 import ResponseTimeGraph from './AdminResultComponents/ResponseTimeGraph'
 
 const Results = () => {
-  const params = useParams()
-  const sessionId = params.sessionId
+  const { sessionId } = useParams()
   const { getters } = useContext(Context)
   const [userPerformance, setUserPerformance] = useState({})
   const [questionPerformance, setQuestionPerformance] = useState({})
@@ -30,7 +29,7 @@ const Results = () => {
         }
       }
 
-      user.answers.forEach((question, index) => {
+      user.answers?.forEach((question, index) => {
         if (!(index in questionPerformance)) {
           questionPerformance[index] = {
             name: `Q ${index + 1}`,
@@ -52,17 +51,12 @@ const Results = () => {
         }
 
         questionPerformance[index].totalTime += computeSecondsElapsed(question.questionStartedAt, question.answeredAt)
-
         setQuestionPerformance({ ...questionPerformance })
       })
 
       setUserPerformance({ ...userPerformance })
     })
   }, [])
-
-  useEffect(() => {
-    console.log('perforamnce', userPerformance)
-  }, [userPerformance])
 
   const computePoints = (questionStarted, questionAnswered, questionIndex, quizQuestions) => {
     const secondsElapsed = (new Date(questionAnswered) - new Date(questionStarted)) / 1000

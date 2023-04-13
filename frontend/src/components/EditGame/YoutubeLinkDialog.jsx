@@ -25,8 +25,6 @@ const YoutubeLinkDialog = ({ open, onClose, questionInfo, setQuestionInfo }) => 
 
   const handleSave = () => {
     setQuestionInfo({ ...questionInfo, url: link })
-    // handle the link here
-    console.log(link)
     setLink('')
     onClose()
   }

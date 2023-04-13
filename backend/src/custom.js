@@ -8,7 +8,6 @@ export const quizQuestionPublicReturn = question => {
     return op.name;
   })
   const publicQuestion = { ...question, options: publicOptions};
-  console.log(publicQuestion);
   return publicQuestion;
 };
 

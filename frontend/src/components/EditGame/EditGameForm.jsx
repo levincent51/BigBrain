@@ -35,7 +35,6 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
   }
 
   const disabledEdit = (id) => {
-    console.log(id)
     const ob = savedInfo.questions?.find(x => x.id === id)
     if (ob) return false
     else return true

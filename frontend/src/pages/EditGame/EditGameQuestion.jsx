@@ -36,7 +36,6 @@ const EditGameQuestion = () => {
     const index = quizInfo.questions.findIndex(q => q.id === parseInt(questionId))
     const updatedQuizInfo = quizInfo
     updatedQuizInfo.questions[index] = questionInfo
-    console.log(updatedQuizInfo)
     const res = await fetchAPI('PUT', getters.token, `admin/quiz/${gameId}`, updatedQuizInfo)
     if (res.error) alert(res.error)
     else {

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -9,7 +8,7 @@ import CardActions from '@mui/material/CardActions'
 import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import StopIcon from '@mui/icons-material/Stop'
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+import PopupState, { bindTrigger } from 'material-ui-popup-state'
 import { blue } from '@mui/material/colors'
 
 const Games = ({ quiz }) => {

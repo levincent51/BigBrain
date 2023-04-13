@@ -43,7 +43,6 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
   }
 
   const editGame = async () => {
-    console.log(quiz.id)
     navigate(`/editgame/${quiz.id}`)
   }
 

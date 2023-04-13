@@ -33,7 +33,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
     if (!isActive && !hasClickedOnButton) {
       setHasClickedOnButton(true)
       const res = await fetchAPI('POST', getters.token, `admin/quiz/${quizId}/start`)
-      if (res.error) console.log(res.error)
+      if (res.error) alert(res.error)
       await fetchAllQuizzes()
     }
   }

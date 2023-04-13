@@ -16,11 +16,11 @@ describe('AddQuestionButton', () => {
   }
   const mockSetQuizInfo = jest.fn()
 
-  it('should open the dialog when the add question button is clicked', () => {
+  it('should open the dialog when the add new question button button is clicked', () => {
     render(
       <AddQuestionButton quizInfo={mockQuizInfo} setQuizInfo={mockSetQuizInfo} />
     )
-    const addQuestionButton = screen.getByRole('button', { name: /add question/i })
+    const addQuestionButton = screen.getByRole('button', { name: /add new question button/i })
     userEvent.click(addQuestionButton)
     expect(screen.getByRole('dialog')).toBeInTheDocument()
   })
@@ -29,7 +29,7 @@ describe('AddQuestionButton', () => {
     render(
       <AddQuestionButton quizInfo={mockQuizInfo} setQuizInfo={mockSetQuizInfo} />
     )
-    const addQuestionButton = screen.getByRole('button', { name: /add question/i })
+    const addQuestionButton = screen.getByRole('button', { name: /add new question button/i })
     userEvent.click(addQuestionButton)
     const cancelButton = screen.getByRole('button', { name: /cancel/i })
     userEvent.click(cancelButton)
@@ -40,7 +40,7 @@ describe('AddQuestionButton', () => {
     render(
       <AddQuestionButton quizInfo={mockQuizInfo} setQuizInfo={mockSetQuizInfo} />
     )
-    const addQuestionButton = screen.getByRole('button', { name: /add question/i })
+    const addQuestionButton = screen.getByRole('button', { name: /add new question button/i })
     userEvent.click(addQuestionButton)
     const questionInput = screen.getByLabelText('Question')
     userEvent.type(questionInput, 'New Question')
@@ -53,7 +53,9 @@ describe('AddQuestionButton', () => {
         ...mockQuizInfo.questions,
         {
           id: 2,
-          question: 'New Question'
+          question: 'New Question',
+          score: 1,
+          timeLimit: 10,
         }
       ]
     })

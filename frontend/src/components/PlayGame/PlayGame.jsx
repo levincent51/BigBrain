@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import fetchAPI from '../../utilities/fetch'
 import Question from './Question'
+import {
+  Box,
+  Container,
+  Paper
+} from '@mui/material'
+import Answers from './Answer'
 
 const PlayGame = ({ playerId, quizStatus, question, answer, setAnswer, setQuestion }) => {
   const [timeLeft, setTimeLeft] = useState(null)
@@ -25,7 +31,6 @@ const PlayGame = ({ playerId, quizStatus, question, answer, setAnswer, setQuesti
         const res = await fetchAPI('GET', null, `play/${playerId}/question`)
         if (res.error) {
           clearInterval(intervalId)
-          console.log('end')
         } else {
           setQuestion(res.question)
           setTimeLeft(getTimeLeft(res.question.isoTimeLastQuestionStarted, res.question.timeLimit))
@@ -49,9 +54,17 @@ const PlayGame = ({ playerId, quizStatus, question, answer, setAnswer, setQuesti
   }, [quizStatus, question, answer, playerId])
 
   return (
-    <>
-      {answer === null ? <Question playerId={playerId} question={question} answer={answer} timeLeft={timeLeft}/> : <p>THIS IS THE ANSWERS {answer}</p>}
-    </>
+    <Container maxWidth='sm'>
+      <Box my={4}>
+        <Paper variant="outlined">
+          <Box p={2}>
+            {answer === null
+              ? <Question playerId={playerId} question={question} answer={answer} timeLeft={timeLeft}/>
+              : <Answers answers={answer}/>}
+          </Box>
+        </Paper>
+      </Box>
+    </Container>
   )
 }
 

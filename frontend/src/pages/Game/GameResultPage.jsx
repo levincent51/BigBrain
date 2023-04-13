@@ -17,7 +17,6 @@ const gameResultsPage = () => {
 
   const loadGameStatus = async () => {
     const quizResults = await fetchGameStatus(getters.token, sessionId)
-    console.log(quizResults)
     setActive(quizResults.active)
     setQuizProgress(quizResults.position)
     setTotalQuestions(quizResults.questions.length)

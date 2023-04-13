@@ -10,8 +10,7 @@ const Logout = (props) => {
   const navigate = useNavigate()
 
   const handleLogout = async () => {
-    const res = await fetchAPI('POST', getters.token, 'admin/auth/logout')
-    console.log(res)
+    await fetchAPI('POST', getters.token, 'admin/auth/logout')
     localStorage.removeItem('token')
     setters.setToken(null)
     navigate('/')

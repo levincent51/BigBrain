@@ -55,7 +55,6 @@ const JoinGame = () => {
             inputProps={{ 'aria-label': 'Game ID' }}
             placeholder='Your quiz name'
             onChange={(e) => {
-              console.log(e.target.value)
               setPlayerName(e.target.value)
             }}
           />

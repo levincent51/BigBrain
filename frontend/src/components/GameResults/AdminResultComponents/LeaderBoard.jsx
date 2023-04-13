@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -29,10 +29,6 @@ const LeaderBoard = ({ userPerformance }) => {
       </ListItemButton>
       )
     })
-
-  useEffect(() => {
-    console.log(userPerformance)
-  }, [userPerformance])
 
   return (
     <List

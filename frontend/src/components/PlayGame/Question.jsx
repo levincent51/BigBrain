@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import fetchAPI from '../../utilities/fetch'
 import {
-  Card,
   Box,
+  Grid,
   CardContent,
   Typography,
   FormControl,
@@ -23,12 +23,10 @@ const Question = ({ playerId, question, answer, timeLeft }) => {
         : [...selectedOptions, optionIndex]
       setSelectedOptions(newSelectedOptions)
       sendAnswer({ answerIds: newSelectedOptions })
-      console.log(newSelectedOptions)
     } else {
       // If only one option can be selected, deselect all other options and select the clicked option
       setSelectedOptions([optionIndex])
       sendAnswer({ answerIds: [optionIndex] })
-      console.log({ answerIds: [optionIndex] })
     }
   }
 
@@ -36,56 +34,69 @@ const Question = ({ playerId, question, answer, timeLeft }) => {
     setSelectedOptions([])
   }, [answer])
 
-  const sendAnswer = async (body) => {
-    const res = await fetchAPI('PUT', null, `play/${playerId}/answer`, body)
-    if (res.error) alert(res.error)
-  }
+  const sendAnswer = async (body) => await fetchAPI('PUT', null, `play/${playerId}/answer`, body)
 
   return (
     question.id !== -1
-      ? <Card>
+      ? <>
         {question?.url !== '' && (
-          <Box>
-            <iframe width="500px" height="300px" src={question?.url} aria-label='question url media' alt='question url media' ></iframe>
+          <Box textAlign='center'>
+            <div style={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}>
+              <iframe src={question?.url} style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0 }} aria-label='question url media' alt='question url media'></iframe>
+            </div>
           </Box>
         )}
         <div>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {question.question}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Score: {question.score}
-            </Typography>
-          </CardContent>
-          {timeLeft && (
-            <div>
-              <Typography variant="body2" color="textSecondary" component="p">
-                <TimerIcon /> {timeLeft} secs left
+          <CardContent >
+            <Box display='flex' justifyContent='space-between'>
+              <Typography gutterBottom variant="h6" component="h2">
+                Q: {question.question}
               </Typography>
-            </div>
-          )}
-          <Typography variant="body2" color="textSecondary" component="p">
-            {question?.multipleChoice ? 'Please select MULTIPLE options' : 'Please select ONE option'}
-          </Typography>
-          <FormControl component="fieldset">
-            <FormGroup>
-              {question?.options.map((option, index) => (
-                <FormControlLabel
-                  key={index}
-                  control={
-                    <Checkbox
-                      checked={selectedOptions.includes(index)}
-                      onChange={() => handleOptionChange(index)}
-                    />
-                  }
-                  label={option}
-                />
-              ))}
-            </FormGroup>
-          </FormControl>
+              {timeLeft && (
+                <div>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    <TimerIcon /> {timeLeft} secs left
+                  </Typography>
+                </div>
+              )}
+            </Box>
+          </CardContent>
+          <Box display='flex' flexDirection='column' p={2}>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {question?.multipleChoice ? 'Please select MULTIPLE options' : 'Please select ONE option'}
+            </Typography>
+            <Box textAlign='center' py={2}>
+              <Box display='flex' justifyContent='center'>
+                <FormControl component="fieldset">
+                  <FormGroup>
+                    <Grid container spacing={2}>
+                      {question?.options.map((option, index) => (
+                        <Grid item xs={12} sm={6} key={index}>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={selectedOptions.includes(index)}
+                                onChange={() => handleOptionChange(index)}
+                              />
+                            }
+                            label={option}
+                            labelPlacement='start'
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </FormGroup>
+                </FormControl>
+              </Box>
+            </Box>
+            <Box display='flex' justifyContent='space-between' alignItems='center'>
+              <Typography variant="body2" color="textSecondary" component="p">
+                Score: {question.score}
+              </Typography>
+            </Box>
+          </Box>
         </div>
-      </Card>
+      </>
       : <CircularProgress />
   )
 }

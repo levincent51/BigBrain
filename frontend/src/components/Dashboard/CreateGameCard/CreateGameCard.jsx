@@ -19,7 +19,7 @@ const CreateGameCard = ({ fetchAllQuizzes }) => {
     const res = await fetchAPI('POST', getters.token, 'admin/quiz/new', {
       name: newGameName
     })
-    if (res.error) console.log(res.error)
+    if (res.error) alert(res.error)
     await fetchAllQuizzes()
   }
 

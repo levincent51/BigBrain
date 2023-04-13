@@ -26,7 +26,6 @@ const Dashboard = () => {
   const processOldSessionList = async (quizList) => {
     const seshList = []
     quizList.forEach(q => {
-      console.log(q)
       q.oldSessions.forEach(s => {
         const sessionQuizCombined = { ...q, sessionId: s }
         seshList.push(sessionQuizCombined)

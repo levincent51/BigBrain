@@ -15,7 +15,6 @@ const EditGame = () => {
 
   const fetchQuizData = async () => {
     const res = await fetchAPI('GET', getters.token, `admin/quiz/${gameId}`)
-    console.log(res)
     if (res.error) alert(res.error)
     else {
       setSavedInfo(res)

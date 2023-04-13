@@ -29,9 +29,6 @@ const MaxAndAverageScoreGraph = ({ data, numPlayers }) => {
           }}
           barSize={20}
         >
-          <text x={500 / 2} y={20} fill="black" textAnchor="middle" dominantBaseline="central">
-            <tspan fontSize="14">Ttieaddadadad</tspan>
-          </text>
           <XAxis
             dataKey="name"
             scale="point"
