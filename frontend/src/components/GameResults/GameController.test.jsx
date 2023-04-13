@@ -32,6 +32,7 @@ describe('GameController', () => {
     )
     const advanceGameButton = screen.getByText(/advance game/i)
     fireEvent.click(advanceGameButton)
+    // check that the progress has incremented and that advance game is called
     await waitFor(() => {
       expect(advanceGame).toHaveBeenCalledWith(quizId, token)
       expect(loadGameStatusMock).toHaveBeenCalled()
@@ -54,6 +55,7 @@ describe('GameController', () => {
       </Context.Provider>
     )
     const stopGameButton = screen.getByText(/stop game/i)
+    // clicking stop calls endGame
     fireEvent.click(stopGameButton)
     await waitFor(() => {
       expect(endGame).toHaveBeenCalledWith(quizId, token)
@@ -75,6 +77,7 @@ describe('GameController', () => {
         </BrowserRouter>
       </Context.Provider>
     )
+    // see results replaces advance game when 100% progress
     const seeResultsButton = screen.getByText(/see results/i)
     expect(seeResultsButton).toBeInTheDocument()
   })

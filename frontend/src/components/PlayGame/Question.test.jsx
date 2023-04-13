@@ -34,17 +34,20 @@ describe('Question', () => {
     const option3 = screen.getByLabelText('Blue')
     fireEvent.click(option1)
     fireEvent.click(option3)
+    // testing options are successfully selected
     expect(option1).toBeChecked()
     expect(option2).not.toBeChecked()
     expect(option3).toBeChecked()
   })
 
   it('calls fetchAPI to send answer when an option is selected', () => {
-    const mockData = { answerIds: [0] }
-    fetchAPI.mockResolvedValue(mockData)
     render(<Question playerId={playerId} question={question} answer={answer} timeLeft={timeLeft}/>)
     const option1 = screen.getByLabelText('Red')
     fireEvent.click(option1)
+    // clicking option1 chooses first index
+    const mockData = { answerIds: [0] }
+    fetchAPI.mockResolvedValue(mockData)
+    // expect the fetchAPI to call with the mocked Data
     expect(fetchAPI).toHaveBeenCalledTimes(1)
     expect(fetchAPI).toHaveBeenCalledWith('PUT', null, `play/${playerId}/answer`, mockData)
   })

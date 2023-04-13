@@ -22,6 +22,7 @@ describe('AddQuestionButton', () => {
     )
     const addQuestionButton = screen.getByRole('button', { name: /add new question button/i })
     userEvent.click(addQuestionButton)
+    // dialog pop up
     expect(screen.getByRole('dialog')).toBeInTheDocument()
   })
 
@@ -32,6 +33,7 @@ describe('AddQuestionButton', () => {
     const addQuestionButton = screen.getByRole('button', { name: /add new question button/i })
     userEvent.click(addQuestionButton)
     const cancelButton = screen.getByRole('button', { name: /cancel/i })
+    // can press cancell and it disappears
     userEvent.click(cancelButton)
     expect(screen.queryByRole('dialog')).not.toBeVisible()
   })
@@ -46,6 +48,7 @@ describe('AddQuestionButton', () => {
     userEvent.type(questionInput, 'New Question')
     const saveButton = screen.getByRole('button', { name: /save/i })
     userEvent.click(saveButton)
+    // expect a new question to be added, or at least the function to do so has been called.
     expect(mockSetQuizInfo).toHaveBeenCalledTimes(1)
     expect(mockSetQuizInfo).toHaveBeenCalledWith({
       ...mockQuizInfo,
