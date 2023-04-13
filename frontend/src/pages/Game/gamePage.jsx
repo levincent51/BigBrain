@@ -7,6 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Lobby from '../../components/GameResults/Lobby'
 import PlayGame from '../../components/PlayGame/PlayGame'
+import PlayerResult from '../../components/PlayGame/PlayerResult/PlayerResult'
 
 const GamePage = () => {
   const params = useParams()
@@ -19,7 +20,7 @@ const GamePage = () => {
     const res = await fetchAPI('GET', null, `play/${playerId}/results`)
     if (res.error) alert(res.error)
     else {
-      console.log(res)
+      // console.log(res)
       // TODO THIS IS AN EXAMPLE STRUCTURE OF RES
       // [
       //   {
@@ -56,7 +57,7 @@ const GamePage = () => {
     <Container>
       {quizStatus === 'pending' && <Lobby/>}
       {quizStatus === 'started' && <PlayGame playerId={playerId} quizStatus={quizStatus} question={question} answer={answer} setAnswer={setAnswer} setQuestion={setQuestion} setQuizStatus={setQuizStatus}/>}
-      {quizStatus === 'ended' && <p>The game has ended.</p>}
+      {quizStatus === 'ended' && <PlayerResult playerId={playerId}/>}
     </Container>
   )
 }
