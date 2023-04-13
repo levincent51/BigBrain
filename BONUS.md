@@ -10,3 +10,7 @@ Edit Question
     - Multiple choice and single choice switch between checkbox and radio
     - when deleting reaches 2 options, disables,
     - when adding more than 6 options, disable add option
+Polling for player quiz
+    - The quiz is polled to count down in real time, as well as change to answer screen and advance when admin advances
+    - Polling also polls when quiz is ended suddenly or when admin starts game from lobby
+    - Question is rendered, added circle loading and image or video is displayed in iframe
