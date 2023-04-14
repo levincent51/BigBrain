@@ -15,6 +15,7 @@
 * 02/04/2023: General edit clause added to 2.2.2
 * 02/04/2023: Comments about advancing added to 2.3.1
 * 04/04/2023: Few helpful tips and elaborations based on questions students ask - see commit for more details.
+* 11/04/2023: Clarified a lot of "game" "session" language that some students found confusing. Updated Typescript link.
 
 ## 1. Before you start
 
@@ -109,17 +110,17 @@ A series of features below need to be implemented in your ReactJS app to operate
 ### 2.3. Feature 3. Admin Start, Stop, Results of game (12% for solo, 10% for pairs)
 
 #### 2.3.1. Starting a game
- * On the dashboard page, add the ability to start a stopped game
+ * On the dashboard page, add the ability to start a new session.
  * When the game is started, a popup is displayed that shows the session ID of the game as a string
  * This session ID should be able to be copied by some kind of "Copy Link" button/element. When this item is clicked, a direct URL is copied to the clipboard. When going to this URL, the users should be given play screen (described in `2.4`) with the session code already pre-populated.
 
 #### 2.3.2. Stopping a game
- * On the dashboard page, the ability to stop a started game. Stopping a game sends all active players to the results screen. A stopped game cannot be restarted.
+ * On the dashboard page, the ability to stop a started game. Stopping a game sends all active players to the results screen. A stopped session cannot be restarted.
  * When the game is stopped, a popup appears that prompts the admin "Would you like to view the results?" If they click yes, they are taken to the screen described in `2.3.3`
 
 #### 2.3.3. Advancing & getting the results of a game
  * A unique route must exist for this screen that is parameterised on the session ID
- * Once the screen loads, and the game hasn't finished, it should allow the admin to advance to the next question or stop the game.
+ * Once the screen loads, and the game hasn't finished, it should allow the admin to advance to the next question or stop the session. You can advance either in the middle of a question or once the question has finished.
  * Once the screen loads, and the game has finished, it should display the following:
    * Table of up to top 5 users and their score
    * Bar/Line chart showing a breakdown of what percentage of people (Y axis) got certain questions (X axis) correct
@@ -208,7 +209,7 @@ A common question we get about component testing is 'what components do I test? 
 ### 2.8. Other notes
  * The port you can use to `fetch` data from the backend is defined in `frontend/src/config.json`
  * The data structure of a "question" is open ended for YOU to define how it's structured - it's not defined explicitly in the backend. Because of this, the backend has 3 wrapper functions defined in `backend/src/custom.js` that it uses to extract meaning from your custom data structure. <b>You will have to implement these as you build out your frontend</b>b>.
-* For users of typescript, there is an alternatively `.eslintrc` file [being collaborated here](https://hackmd.io/sy1urGgxRpGwOJ0nOkNlUw?both). Do not change it unless given approval on forum.
+* For users of typescript, [follow this guide](https://gitlab.cse.unsw.edu.au/COMP6080/23T1/react-typescript)
 
 ### 3.1. The Frontend
 
@@ -388,7 +389,7 @@ submit is your own work (as described above).
 Note you will not be penalized if your work has the potential to be taken without your consent or
 knowledge.
 
-**PLEASE NOTE: To ensure the originality of your work, we are requiring that you regularly commit your work to git throughout the weeks this assignment has been released. Regular and small commits and critical. Failures to commit regularly (or at minimum, failures to commit in small chunks) may result in allegations of plagiarism**
+**PLEASE NOTE: To ensure the originality of your work, we are requiring that you regularly commit your work to git throughout the weeks this assignment has been released. Regular and small commits (essentially at least once a day that you work on the assignment) are critical. Failures to commit regularly (or at minimum, failures to commit in small chunks) may result in allegations of plagiarism.**
 
 ## 8. Submission
 
