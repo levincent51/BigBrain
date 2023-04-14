@@ -44,7 +44,7 @@ function App () {
             <Route path="/*" element={
               <>
                 <div>NO MATCHING ROUTE</div>
-                <button onClick={() => window.location.replace('/')}>Go back</button>
+                <button aria-label='go back' onClick={() => window.location.replace('/')}>Go back</button>
               </>
             } />
           </Route>

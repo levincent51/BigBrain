@@ -17,7 +17,7 @@ const Logout = (props) => {
   }
 
   return (
-      <Button color="inherit" onClick={handleLogout}>Logout</Button>
+      <Button name='logout' color="inherit" aria-label='logout' onClick={handleLogout}>Logout</Button>
   )
 }
 

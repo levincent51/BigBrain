@@ -41,6 +41,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
         {(popupState) => (
           <div onClick={stopGame}>
             <Button
+              aria-label='End quiz'
               variant="contained"
               endIcon={<StopIcon/>}
               {...bindTrigger(popupState)}
@@ -77,6 +78,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
         )}
       </PopupState>
       <IconButton
+        name='view-results'
         sx={{
           height: '24px',
           fontSize: '11px',

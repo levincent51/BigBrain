@@ -61,7 +61,7 @@ const LoginPage = (props) => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link component="button" onClick={() => navigate(isLoginPage ? '/register' : '/login')} variant="body2">
+                <Link component="button" name='switch-to-register' onClick={() => navigate(isLoginPage ? '/register' : '/login')} variant="body2">
                   {isLoginPage ? 'Don\'t have an account? Register' : 'Already have an account? Login'}
                 </Link>
               </Grid>

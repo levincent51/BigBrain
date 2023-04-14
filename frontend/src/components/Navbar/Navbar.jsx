@@ -27,7 +27,7 @@ const Navbar = (props) => {
             </Typography>
             {isLoggedIn
               ? <Logout/>
-              : <Button color="inherit" onClick={handleLoginClick}>
+              : <Button name='login-register-button' aria-label='login/register' color="inherit" onClick={handleLoginClick}>
                 Login/Register
               </Button>}
           </Toolbar>

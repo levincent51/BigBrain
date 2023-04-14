@@ -74,6 +74,7 @@ const Login = (props) => {
       <Button
         type="submit"
         fullWidth
+        name='login-button'
         variant="contained"
         sx={{ mt: 2 }}
       >

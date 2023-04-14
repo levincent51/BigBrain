@@ -85,7 +85,7 @@ const GameController = ({ quizId, sessionId, loadGameStatus, quizProgress, total
         <PlayArrowIcon sx={{ color: blue[500] }}/>
       </IconButton>
       <Divider sx={{ height: 30 }} orientation="vertical" />
-      <IconButton aria-label="stop game" size="small" onClick={endGameUpdateUi}>
+      <IconButton aria-label="stop game" name='stop-game' size="small" onClick={endGameUpdateUi}>
         <Typography
           sx={{ fontSize: '15px' }}
         >

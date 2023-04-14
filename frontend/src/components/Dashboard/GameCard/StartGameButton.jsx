@@ -49,7 +49,9 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
       {(popupState) => (
         <div onClick={startGame}>
           <Button
+            aria-label='Start quiz'
             variant="contained"
+            name='start-quiz'
             endIcon={<PlayCircleOutlineIcon/>}
             {...bindTrigger(popupState)}
             sx={{ backgroundColor: green[600], width: '90%', height: '24px', position: 'absolute', bottom: '5%', left: '5%', fontSize: '11px' }}
@@ -84,7 +86,7 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
                 value={sessionId}
               />
               <Divider sx={{ height: 18, m: 0.2 }} orientation="vertical" />
-              <IconButton aria-label="createGame" size="small" onClick={copyToClip}>
+              <IconButton aria-label="create game" name='copy-to-clip' size="small" onClick={copyToClip}>
                 <ContentPasteIcon/>
               </IconButton>
             </Paper>

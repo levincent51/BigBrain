@@ -78,6 +78,7 @@ const Games = ({ quiz, fetchAllQuizzes }) => {
       {hoveringEdit && <IconButton
         aria-label="edit game"
         size="small"
+        name="edit-game"
         onClick={editGame}
         sx={{ position: 'absolute', right: '40%', top: '20%', backgroundColor: 'white' }}
         onMouseEnter={() => setHoveringEdit(true)}
