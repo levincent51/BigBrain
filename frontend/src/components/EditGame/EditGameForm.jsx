@@ -42,13 +42,13 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
 
   return (
     <form onSubmit={handleSubmit}>
-        <Box display="flex" justifyContent='space-between'>
+      <Box display="flex" justifyContent='space-between'>
         <Typography variant="h6" gutterBottom>
           Edit Game
         </Typography>
-        <Box display="flex" justifyContent="flex-end" mb={2}>
-          <BackButton path={'/'} />
-        </Box>
+      <Box display="flex" justifyContent="flex-end" mb={2}>
+        <BackButton path={'/'} />
+      </Box>
       </Box>
       <TextField
         label="Name"

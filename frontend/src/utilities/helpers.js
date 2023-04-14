@@ -50,3 +50,21 @@ export const playerGetStatus = async (playerId) => {
     return res.started
   }
 }
+
+export const handleGameUpload = async (token, newGameId, quizInfo, fetchAllQuizzes) => {
+  const res = await fetchAPI('PUT', token, `admin/quiz/${newGameId}`, quizInfo)
+  if (res.error) alert(res.error)
+  else {
+    fetchAllQuizzes()
+  }
+}
+
+export const createPost = async (token, newGameName, fetchAllQuizzes) => {
+  console.log(newGameName)
+  const res = await fetchAPI('POST', token, 'admin/quiz/new', {
+    name: newGameName
+  })
+  if (res.error) console.log(res.error)
+  else return res.quizId
+  await fetchAllQuizzes()
+}

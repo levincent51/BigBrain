@@ -25,7 +25,7 @@ const MaxAndAverageScoreGraph = ({ data, numPlayers }) => {
             top: 5,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 5
           }}
           barSize={20}
         >

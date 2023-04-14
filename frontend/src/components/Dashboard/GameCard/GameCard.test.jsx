@@ -8,14 +8,14 @@ jest.mock('../../../utilities/fetch')
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: jest.fn(),
+  useNavigate: jest.fn()
 }))
 
 describe('Games component', () => {
   it('renders a card with the quiz name, thumbnail, and metadata', async () => {
     const quiz = {
       name: 'Test Quiz',
-      thumbnail: 'https://example.com/image.jpg',
+      thumbnail: 'https://example.com/image.jpg'
     }
     const mockData = {
       createdAt: '2023-04-09T10:41:29.202Z',
@@ -27,7 +27,7 @@ describe('Games component', () => {
       questions: [
         { id: 1, question: 'Question 1', timeLimit: 10 },
         { id: 2, question: 'Question 2', timeLimit: 10 }
-      ],
+      ]
     }
     fetchAPI.mockResolvedValue(mockData)
 
@@ -62,7 +62,7 @@ describe('Games component', () => {
     const quiz = {
       name: 'Test Quiz',
       thumbnail: 'https://example.com/image.jpg',
-      active: 123,
+      active: 123
     }
     const mockData = {
       createdAt: '2023-04-09T10:41:29.202Z',
@@ -74,7 +74,7 @@ describe('Games component', () => {
       questions: [
         { id: 1, question: 'Question 1', timeLimit: 10 },
         { id: 2, question: 'Question 2', timeLimit: 10 }
-      ],
+      ]
     }
     fetchAPI.mockResolvedValue(mockData)
 
@@ -93,7 +93,7 @@ describe('Games component', () => {
   it('calls the deleteQuiz function when the delete button is clicked', async () => {
     const quiz = {
       name: 'Test Quiz',
-      thumbnail: 'https://example.com/image.jpg',
+      thumbnail: 'https://example.com/image.jpg'
     }
     const mockData = {
       createdAt: '2023-04-09T10:41:29.202Z',
@@ -105,7 +105,7 @@ describe('Games component', () => {
       questions: [
         { id: 1, question: 'Question 1', timeLimit: 10 },
         { id: 2, question: 'Question 2', timeLimit: 10 }
-      ],
+      ]
     }
     fetchAPI.mockResolvedValue(mockData)
 
@@ -129,7 +129,7 @@ describe('Games component', () => {
   it('navigates to the edit game page when the edit button is clicked', async () => {
     const quiz = {
       name: 'Test Quiz',
-      thumbnail: 'https://example.com/image.jpg',
+      thumbnail: 'https://example.com/image.jpg'
     }
     const mockData = {
       createdAt: '2023-04-09T10:41:29.202Z',
@@ -141,7 +141,7 @@ describe('Games component', () => {
       questions: [
         { id: 1, question: 'Question 1', timeLimit: 10 },
         { id: 2, question: 'Question 2', timeLimit: 10 }
-      ],
+      ]
     }
     fetchAPI.mockResolvedValue(mockData)
 
@@ -165,7 +165,7 @@ describe('Games component', () => {
   it('renders a start game button if the quiz is not active', () => {
     const quiz = {
       name: 'Test Quiz',
-      thumbnail: 'https://example.com/image.jpg',
+      thumbnail: 'https://example.com/image.jpg'
     }
     render(<Games quiz={quiz} isActive={false} />)
     expect(screen.getByRole('button', { name: /start quiz/i })).toBeInTheDocument()

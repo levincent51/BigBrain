@@ -7,7 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  Scatter,
+  Scatter
 } from 'recharts'
 import Container from '@mui/material/Container'
 
@@ -26,7 +26,7 @@ const ResponseTimeGraph = ({ data, numPlayers }) => {
             top: 5,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 5
           }}
           barSize={20}
         >

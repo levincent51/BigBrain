@@ -73,7 +73,7 @@ const Results = () => {
     return timeLimit * points
   }
 
-  const computeSecondsElapsed = (questionStarted, questionAnswered,) => {
+  const computeSecondsElapsed = (questionStarted, questionAnswered) => {
     const secondsElapsed = (new Date(questionAnswered) - new Date(questionStarted)) / 1000
     return secondsElapsed
   }

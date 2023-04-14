@@ -28,7 +28,7 @@ const JoinGame = () => {
           flexDirection: 'column',
           alignItems: 'center',
           margin: '10px',
-          width: 'fit-content',
+          width: 'fit-content'
         }}
       >
         <Paper sx={{ display: 'flex', margin: '10px' }}>

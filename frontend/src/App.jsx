@@ -21,7 +21,7 @@ function App () {
   }
 
   return (
-    <Context.Provider value={{ getters, setters, }}>
+    <Context.Provider value={{ getters, setters }}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Navbar isLoggedIn={!!token}/>}>

@@ -62,11 +62,11 @@ const StartGameButton = ({ quizId, isActive, setIsActive, fetchAllQuizzes, sessi
             {...bindPopover(popupState)}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'center',
+              horizontal: 'center'
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'center',
+              horizontal: 'center'
             }}
             >
             <Paper

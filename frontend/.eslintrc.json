@@ -24,7 +24,7 @@
         "linebreak-style": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "semi": 2,
-        "comma-dangle": 0,
+        "comma-dangle": 2,
         "react/prop-types": 0
     },
     "settings": {

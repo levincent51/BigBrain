@@ -9,7 +9,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  CircularProgress,
+  CircularProgress
 } from '@mui/material'
 import TimerIcon from '@mui/icons-material/Timer'
 

@@ -4,7 +4,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography,
+  Typography
 } from '@mui/material'
 
 const Answers = ({ answers }) => {

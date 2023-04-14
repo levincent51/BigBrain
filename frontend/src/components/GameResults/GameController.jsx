@@ -26,7 +26,7 @@ const CircularProgressWithLabel = ({ currentQuestion, totalQuestions }) => {
           position: 'absolute',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
       >
         <Typography variant="caption" component="div" color="text.secondary">

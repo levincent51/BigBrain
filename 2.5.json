@@ -1,0 +1,49 @@
+{
+  "name": "This is a test",
+  "owner": "tom@gmail.com",
+  "questions": [
+  {
+    "id": 1,
+    "question": "How are you?",
+    "url": "https://www.youtube.com/embed/ep6k3Ofcf2s",
+    "multipleChoice": false,
+    "score": 5,
+    "options": [
+    {
+        "name": "Yes",
+        "correct": true
+    },
+    {
+        "name": "No",
+        "correct": false
+    }
+    ],
+    "timeLimit": 120
+  },
+  {
+    "id": 2,
+    "question": "gsdgsg",
+    "url": "",
+    "multipleChoice": true,
+    "score": 4,
+    "options": [
+    {
+        "name": "grerg",
+        "correct": true
+    },
+    {
+        "name": "gegre",
+        "correct": false
+    },
+    {
+        "name": "gwgwg4123",
+        "correct": true
+    }
+    ],
+    "timeLimit": 123
+  }
+  ],
+  "thumbnail": "https://picsum.photos/500/300?random=1",
+  "active": null,
+  "createdAt": "2023-04-04T14:19:49.456Z"
+}

@@ -18,7 +18,7 @@ const PlayerResult = ({ playerId }) => {
     await fetchQuizResult()
   }, [])
 
-  const test = playerResults.map((questionResult, index) => {
+  const questionResults = playerResults.map((questionResult, index) => {
     return <ResultCard key={index} questionResult={questionResult} index={index} />
   })
 
@@ -29,7 +29,7 @@ const PlayerResult = ({ playerId }) => {
       </h2>
       <br></br>
       <Stack direction="column" spacing={2}>
-        {test}
+        {questionResults}
       </Stack>
     </>
   )

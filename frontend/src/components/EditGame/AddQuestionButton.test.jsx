@@ -58,7 +58,7 @@ describe('AddQuestionButton', () => {
           id: 2,
           question: 'New Question',
           score: 1,
-          timeLimit: 10,
+          timeLimit: 10
         }
       ]
     })

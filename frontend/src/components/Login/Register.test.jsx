@@ -10,7 +10,7 @@ jest.mock('../../utilities/fetch')
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: jest.fn(),
+  useNavigate: jest.fn()
 }))
 
 describe('Register', () => {
