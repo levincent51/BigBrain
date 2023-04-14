@@ -120,7 +120,7 @@ A series of features below need to be implemented in your ReactJS app to operate
 
 #### 2.3.3. Advancing & getting the results of a game
  * A unique route must exist for this screen that is parameterised on the session ID
- * Once the screen loads, and the game hasn't finished, it should allow the admin to advance to the next question or stop the session.
+ * Once the screen loads, and the game hasn't finished, it should allow the admin to advance to the next question or stop the session. You can advance either in the middle of a question or once the question has finished.
  * Once the screen loads, and the game has finished, it should display the following:
    * Table of up to top 5 users and their score
    * Bar/Line chart showing a breakdown of what percentage of people (Y axis) got certain questions (X axis) correct
