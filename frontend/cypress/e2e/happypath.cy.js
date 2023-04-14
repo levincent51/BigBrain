@@ -1,5 +1,6 @@
 // NOTE: THIS REQUIRES A CLEAN DATABASE (at least for the created test user Codey and email Test@mail.com)
 
+// ** INTEGRATION TEST FOR HAPPY PATH ** //
 describe('Registers successfully', () => {
   it('should navigate to welcome page successfully', () => {
     cy.visit('localhost:3000/')
