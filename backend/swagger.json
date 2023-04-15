@@ -401,6 +401,9 @@
                     "schema": {
                         "type": "object",
                         "properties": {
+                            "quizId": {
+                                "$ref": "#/components/fields/QuizId"
+                            }
                         }
                     }
                 },                
