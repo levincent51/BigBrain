@@ -14,3 +14,4 @@ Polling for player quiz
     - The quiz is polled to count down in real time, as well as change to answer screen and advance when admin advances
     - Polling also polls when quiz is ended suddenly or when admin starts game from lobby
     - Question is rendered, added circle loading and image or video is displayed in iframe
+    - If there is an associated url, that url will load either an image or an embedded youtube video
