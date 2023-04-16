@@ -16,6 +16,7 @@
 * 02/04/2023: Comments about advancing added to 2.3.1
 * 04/04/2023: Few helpful tips and elaborations based on questions students ask - see commit for more details.
 * 11/04/2023: Clarified a lot of "game" "session" language that some students found confusing. Updated Typescript link.
+* 15/04/2023: Fixed /admin/quiz/new example response in Swagger.
 
 ## 1. Before you start
 
