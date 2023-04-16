@@ -20,3 +20,11 @@ Integration test 1
 5.Loads the results page successfully
 6.Logs out of the application successfully
 7.Logs back into the application successfully
+
+Integration test 2
+1.Registers successfully
+2.Creates a new game successfully
+3.Edit game name and upload file succesfully
+4.Add one question successfully
+5.Logs out of the application successfully
+6.Logs back into the application successfully

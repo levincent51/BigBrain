@@ -29,6 +29,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
         <Button
           variant="outlined"
           color="primary"
+          name='add-question'
           startIcon={<AddIcon />}
           onClick={handleAddQuestion}
           aria-label='Add new question button'
@@ -42,6 +43,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
           <TextField
             label="Question"
             variant="outlined"
+            name="add-question-field"
             margin="normal"
             autoFocus
             value={newQuestion}
@@ -52,7 +54,7 @@ function AddQuestionButton ({ quizInfo, setQuizInfo }) {
         </DialogContent>
         <DialogActions>
           <Button aria-label='cancel button' onClick={() => setModalOpen(false)}>Cancel</Button>
-          <Button aria-label='save button' onClick={handleSaveQuestion} color="primary">Save</Button>
+          <Button aria-label='save button' name="save-question-field" onClick={handleSaveQuestion} color="primary">Save</Button>
         </DialogActions>
       </Dialog>
     </>

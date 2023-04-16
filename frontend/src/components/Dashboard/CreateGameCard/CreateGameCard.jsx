@@ -62,11 +62,12 @@ const CreateGameCard = ({ fetchAllQuizzes }) => {
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="New game name"
+            name="new-game-input"
             inputProps={{ 'aria-label': 'upload game' }}
             onChange={e => setNewGameName(e.target.value)}
           />
           <Divider sx={{ height: 18, m: 0.2 }} orientation="vertical" />
-          <IconButton aria-label="createGame" size="small" color="success" onClick={() => createPost(getters.token, newGameName, fetchAllQuizzes)}>
+          <IconButton aria-label="createGame" name="create-game" size="small" color="success" onClick={() => createPost(getters.token, newGameName, fetchAllQuizzes)}>
             <AddIcon/>
           </IconButton>
         </Paper>
