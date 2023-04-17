@@ -119,7 +119,7 @@ const EditGameForm = ({ quizInfo, savedInfo, setQuizInfo, handleSubmit, navigate
       </Grid>
       <Typography variant='subtitle2'>Note: You must save changes for new questions to access them</Typography>
       <Box mt={2} display="flex" justifyContent="center">
-        <Button fullWidth aria-label='save game changes' variant="contained" color="primary" type="submit" onClick={handleSubmit}>
+        <Button fullWidth aria-label='save game changes' name="save-game" variant="contained" color="primary" type="submit" onClick={handleSubmit}>
           Save Changes
         </Button>
       </Box>
