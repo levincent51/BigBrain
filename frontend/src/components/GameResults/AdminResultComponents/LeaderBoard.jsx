@@ -32,7 +32,7 @@ const LeaderBoard = ({ userPerformance }) => {
 
   return (
     <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      sx={{ minWidth: '40%', bgcolor: 'background.paper', paddingLeft: '110px' }}
       aria-label="contacts"
     >
       <h2>LeaderBoard</h2>

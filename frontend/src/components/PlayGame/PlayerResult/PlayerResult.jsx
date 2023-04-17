@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import fetchAPI from '../../../utilities/fetch'
 import Stack from '@mui/material/Stack'
 import ResultCard from './ResultCard'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { CardActionArea } from '@mui/material'
 
 const PlayerResult = ({ playerId }) => {
   const [playerResults, setPlayerResults] = useState([])
@@ -24,6 +29,21 @@ const PlayerResult = ({ playerId }) => {
 
   return (
     <>
+      <Card sx={{ marginBottom: '50px', width: 'fit-content' }}>
+        <CardActionArea>
+          <CardContent sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '20px',
+            alignItems: 'center'
+          }}>
+            <InfoOutlinedIcon />
+            <Typography variant="body2" color="text.secondary">
+              Points are computed by taking (time limit (s) - time taken (s)) * questions points
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
       <h2>
         Results
       </h2>

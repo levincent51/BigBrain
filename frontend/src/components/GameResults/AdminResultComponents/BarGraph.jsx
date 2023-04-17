@@ -4,7 +4,9 @@ import Container from '@mui/material/Container'
 
 const BarGraph = ({ data }) => {
   return (
-    <Container>
+    <Container
+      sx={{ maxWidth: '50%' }}
+    >
       <BarChart
         width={500}
         height={300}

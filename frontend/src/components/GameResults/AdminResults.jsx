@@ -7,6 +7,11 @@ import Container from '@mui/material/Container'
 import BarGraph from './AdminResultComponents/BarGraph'
 import MaxAndAverageScoreGraph from './AdminResultComponents/MaxAndAverageScoreGraph'
 import ResponseTimeGraph from './AdminResultComponents/ResponseTimeGraph'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Typography from '@mui/material/Typography'
+import { CardActionArea } from '@mui/material'
 
 const Results = () => {
   const { sessionId } = useParams()
@@ -91,6 +96,21 @@ const Results = () => {
       alignItems: 'centre',
       justifyContent: 'centre'
     }}>
+      <Card sx={{ marginBottom: '50px', width: 'fit-content' }}>
+        <CardActionArea>
+          <CardContent sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '20px',
+            alignItems: 'center'
+          }}>
+            <InfoOutlinedIcon />
+            <Typography variant="body2" color="text.secondary">
+              Points are computed by taking (time limit (s) - time taken (s)) * questions points
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
       <Container sx={{
         display: 'flex'
       }}>
